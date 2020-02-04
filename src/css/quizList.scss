@@ -1,0 +1,27 @@
+.category-list {
+  box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25), 0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
+  border-radius: 8px;
+  padding: 20px 15px;
+  position: relative;
+  top: 50px;
+  background: #333333;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  font-weight: 600;
+
+  li {
+    padding: 0.8rem 1rem;
+    transition: 0.3s all ease;
+    border: 1px white;
+    border: 0px solid white;
+    border-radius: 20px;
+
+    &:hover {
+      background: white;
+      color: #333333;
+      cursor: pointer;
+    }
+  }
+}
