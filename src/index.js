@@ -10,9 +10,9 @@ import {ApolloProvider} from '@apollo/react-hooks';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/index.scss';
 
-
+console.log(process.env.REACT_APP_PRISMA_API_ENDPOINT)
 const client = new ApolloClient({
-    uri: 'http://localhost:4000',
+    uri: process.env.REACT_APP_PRISMA_API_ENDPOINT,
 })
 
 
@@ -22,7 +22,6 @@ client.writeData({
         colorBackground: '',
     }
 })
-
 
 ReactDOM.render(
     <BrowserRouter>
