@@ -19,6 +19,7 @@
 .env.production.local
 .idea
 .env
+.history
 
 npm-debug.log*
 yarn-debug.log*

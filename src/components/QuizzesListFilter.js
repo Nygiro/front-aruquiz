@@ -1,8 +1,7 @@
 import React from 'react';
 import { IonToggle, IonList, IonItem, IonLabel, IonContent, IonListHeader, IonHeader, IonTitle, IonFooter, IonToolbar, IonButtons, IonButton } from '@ionic/react';
-
+import {schoolSubjects} from './../utils/Constants';
 const QuizzesListFilter = ({ onDismissModal, setFilterQuizzes, filterQuizzes }) => {
-  const schoolSubjects = ["Mathématique", "Anglais"];
 
   const handleToggleChange = (schoolSubject) => {
     if (filterQuizzes.indexOf(schoolSubject) > -1) {

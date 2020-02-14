@@ -38,3 +38,18 @@ export const SEARCH_QUERY_QUIZZES = gql`
     }
   }
 `
+
+export const GET_QUIZZES_WITH_FILTER = gql`
+query quizzesBySchoolClass($filter: [String!]!, $forCurentUser: Boolean = false){
+  quizzesBySchoolClass(filter: $filter, forCurentUser: $forCurentUser) {
+    id,
+    name,
+    schoolSubject {
+      name
+    },
+    createdBy {
+      userName
+    }
+  }
+}
+`;
