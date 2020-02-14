@@ -1,23 +1,23 @@
 import React from 'react';
-import {Route, useRouteMatch} from "react-router-dom";
+import { useQuery } from "@apollo/react-hooks";
+import { IonApp } from '@ionic/react';
 
-import NavBar from './components/Navbar';
-import Home from "./components/Home";
-import QuizList from './components/QuizList';
-import Quiz from './components/Quiz';
-import {useApolloClient, useQuery} from "@apollo/react-hooks";
-import {GET_COLOR_BACKGROUND} from './utils/Store'
+/**
+ * COMPONENT
+ */
+import Home from './pages/Home';
+/**
+ * STORE
+ */
+import {GET_IS_DARK_MODE } from './utils/Store';
 
 const App = () => {
-    const {data, client} = useQuery(GET_COLOR_BACKGROUND);
-    return (
-        <div className={data.colorBackground}>
-            <NavBar/>
-            <Route exact path="/" component={Home}/>
-            <Route exact path="/quizzes" component={QuizList}/>
-            <Route exact path="/quizzes/:quizId" component={Quiz}/>
-        </div>
-    );
+  const { data: dataForIsDarkMode } = useQuery(GET_IS_DARK_MODE);
+  return (
+      <IonApp className={`${dataForIsDarkMode.darkMode ? 'dark-theme' : ''}`}>
+        <Home/>
+      </IonApp>
+  )
 }
 
 export default App;

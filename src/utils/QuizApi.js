@@ -24,7 +24,7 @@ query quiz($quizId: ID!){
       name
     },
     createdBy {
-      name
+      userName
     }
   }
 }

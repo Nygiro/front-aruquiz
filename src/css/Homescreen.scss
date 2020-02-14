@@ -1,0 +1,17 @@
+// ion-toolbar {
+//   // TODO test transparent and fullscreen
+//   --background: #171941;
+//   --border-color: #ffffff;
+//   --color: #ffffff;
+// }
+.homescreen-background {
+  height: 92.7vh;
+  width: 100%;
+  background: #171941;
+  position: relative;
+  img {
+    position: absolute;
+    bottom: 0;
+    width: 500px;
+  }
+}
