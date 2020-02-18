@@ -14,7 +14,7 @@ const CameraDetector = () => {
             navigator.mozGetUserMedia ||
             navigator.msGetUserMedia);
         navigator.mediaDevices
-            .getUserMedia({ video: true })
+            .getUserMedia({ video: {facingMode: 'environment'} })
             .then(stream => {
                 if ("srcObject" in video.current) {
                     video.current.srcObject = stream;
