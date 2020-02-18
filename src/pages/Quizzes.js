@@ -1,34 +1,23 @@
 import React, { useState } from "react";
-import { IonHeader, IonModal, IonToolbar, IonSearchbar, IonTitle, IonSegment, IonSegmentButton, IonContent, IonPage, IonButtons, IonMenuButton, IonListHeader, IonButton, IonIcon, IonDatetime, IonSelectOption, IonList, IonItem, IonLabel, IonSelect, IonPopover, IonAvatar } from '@ionic/react';
+import { IonHeader, IonModal, IonToolbar, IonSearchbar, IonTitle, IonSegment, IonSegmentButton, IonContent, IonPage, IonButtons, IonMenuButton, IonButton, IonIcon, IonLabel } from '@ionic/react';
 import { options } from 'ionicons/icons';
 import QuizzesListFilter from "../components/QuizzesListFilter";
+import QuizzesContent from "../components/QuizzesContent";
 import { useQuery } from "@apollo/react-hooks";
-import { GET_QUIZZES_WITH_FILTER } from "../utils/QuizApi";
+import { GET_SCHOOL_SUBJECTS } from "../utils/SchoolSubject";
 import Loading from "../components/Loading";
-import { schoolSubjects } from './../utils/Constants';
-import QuizzesList from "../components/QuizzesList";
 
 const Quizzes = () => {
   const [segment, setSegment] = useState('all');
-
   const [filterQuizzes, setFilterQuizzes] = useState([]);
   const [showFilterModal, setShowFilterModal] = useState(false);
-  const [showQuizModal, setShowQuizModal] = useState(false);
-
-  let filter = (filterQuizzes.length > 0) ? filterQuizzes : schoolSubjects
-  let forCurrentUser = (segment === 'own') ? true : false;
-
-  const { loading, error, data: dataForQuizzes } = useQuery(GET_QUIZZES_WITH_FILTER, {
-    variables: {
-      filter,
-      forCurrentUser
-    }
-  });
-
+  const [searchQuizInput, setSearchQuizInput] = useState('');
+  const { loading, error, data: dataForSchoolSubjects } = useQuery(GET_SCHOOL_SUBJECTS);
 
   if (loading) return <Loading />;
   if (error) return `Error! ${error.message}`;
 
+  let filter = (filterQuizzes.length > 0) ? filterQuizzes : dataForSchoolSubjects.schoolSubjects.map(schoolSubject => schoolSubject.name)
 
   return (
     <IonPage id="quizzes-page">
@@ -53,36 +42,20 @@ const Quizzes = () => {
               <IonLabel>Own</IonLabel>
             </IonSegmentButton>
           </IonSegment>
-          <IonSearchbar></IonSearchbar>
+          <IonSearchbar placeholder="Search" onIonChange={(e) => setSearchQuizInput(e.detail.value)} value={searchQuizInput} />
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <QuizzesList
-          quizzesList={dataForQuizzes.quizzesBySchoolClass}
-          setShowQuizModal={setShowQuizModal}
-          showQuizModal={showQuizModal}
-          listType={segment}
-          hide={segment === 'own'}
-        />
-        <QuizzesList
-          quizzesList={dataForQuizzes.quizzesBySchoolClass}
-          setShowQuizModal={setShowQuizModal}
-          showQuizModal={showQuizModal}
-          listType={segment}
-          hide={segment === 'all'}
-        />
+        <QuizzesContent filter={filter} searchQuizInput={searchQuizInput} segment={segment} />
       </IonContent>
-      <IonModal
-        isOpen={showFilterModal}
-        onDidDismiss={() => setShowFilterModal(false)}
-      >
+      <IonModal isOpen={showFilterModal} onDidDismiss={() => setShowFilterModal(false)}>
         <QuizzesListFilter
           onDismissModal={() => setShowFilterModal(false)}
           setFilterQuizzes={setFilterQuizzes}
           filterQuizzes={filterQuizzes}
         />
       </IonModal>
-    </IonPage>
+    </IonPage >
   )
 };
 

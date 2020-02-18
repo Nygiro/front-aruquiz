@@ -5,15 +5,16 @@ import { calendar, contacts, map, informationCircle } from 'ionicons/icons';
 import About from './About';
 import Quizzes from './Quizzes';
 import RedirectLogout from '../components/RedirectLogout';
+import Quiz from './Quiz';
 
 
 const MainTabs = () => {
   return (
     <IonTabs>
       <IonRouterOutlet>
-        <Route path="/quizzes" component={Quizzes} />
-        <Route path="/about" component={About} />
-        <Route path="/logout" component={RedirectLogout} />
+        <Route path="/quizzes" component={Quizzes} exact />
+        <Route path="/about" component={About} exact />
+        <Route path="/logout" component={RedirectLogout} exact />
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
         <IonTabButton tab="quizzes" href="/quizzes">

@@ -1,5 +1,5 @@
-import React, {useEffect, useRef} from 'react';
-import {AR} from "js-aruco";
+import React, { useEffect, useRef } from 'react';
+import { AR } from "js-aruco";
 
 const ANSWER = ['A', 'B', 'C', 'D'];
 
@@ -14,7 +14,7 @@ const CameraDetector = () => {
             navigator.mozGetUserMedia ||
             navigator.msGetUserMedia);
         navigator.mediaDevices
-            .getUserMedia({video: true})
+            .getUserMedia({ video: true })
             .then(stream => {
                 if ("srcObject" in video.current) {
                     video.current.srcObject = stream;
@@ -23,8 +23,8 @@ const CameraDetector = () => {
                 }
             })
             .catch(function (err) {
-                    console.log(err.name + ": " + err.message);
-                }
+                console.log(err.name + ": " + err.message);
+            }
             );
         requestAnimationFrame(() => {
             tick(video.current, canvas.current);
@@ -103,8 +103,8 @@ const CameraDetector = () => {
 
     return (
         <div className="CameraDetector">
-            <video ref={video} autoPlay={true} style={{display: 'none'}}></video>
-            <canvas ref={canvas} style={{width: 500, height: 400}}></canvas>
+            <video ref={video} autoPlay={true} style={{ display: 'none' }}></video>
+            <canvas ref={canvas} style={{ width: 500, height: 400 }}></canvas>
         </div>
     );
 };

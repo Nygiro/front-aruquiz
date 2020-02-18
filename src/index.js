@@ -28,6 +28,14 @@ import { ARUQUIZ_USER_IS_LOGGED_IN, ARUQUIZ_USER_USERNAME, ARUQUIZ_USER_TOKEN } 
 
 const client = new ApolloClient({
     uri: process.env.REACT_APP_PRISMA_API_ENDPOINT,
+    request: (operation) => {
+        const token = localStorage.getItem(ARUQUIZ_USER_TOKEN)
+        operation.setContext({
+            headers: {
+                authorization: token ? `Bearer ${token}` : ''
+            }
+        })
+    }
 })
 
 console.log('clear')
