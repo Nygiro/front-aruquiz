@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import QuizzesList from './QuizzesList';
-import Loading from './Loading';
+import Loading from '../Utils/Loading';
 import { useQuery } from '@apollo/react-hooks';
-import { GET_QUIZZES_WITH_FILTER } from '../utils/QuizApi';
+import { GET_QUIZZES_WITH_FILTER } from '../../utils/QuizApi';
 
 const QuizzesContent = ({ filter, searchQuizInput, segment }) => {
   let forCurrentUser = (segment === 'own') ? true : false;

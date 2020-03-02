@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/react-hooks";
-import Loading from "../components/Loading";
+import Loading from "../components/Utils/Loading";
 import { GET_QUIZ } from "../utils/QuizApi";
-import CameraDetector from "../components/CameraDetector";
+import CameraDetector from "../components/Quiz/CameraDetector";
 
 const Quiz = () => {
   const { quizId } = useParams();

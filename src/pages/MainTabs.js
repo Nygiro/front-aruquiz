@@ -4,7 +4,7 @@ import { Route, Redirect } from 'react-router';
 import { calendar, contacts, map, informationCircle } from 'ionicons/icons';
 import About from './About';
 import Quizzes from './Quizzes';
-import RedirectLogout from '../components/RedirectLogout';
+import RedirectLogout from '../components/Utils/RedirectLogout';
 import Quiz from './Quiz';
 
 

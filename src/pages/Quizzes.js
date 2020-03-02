@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { IonHeader, IonModal, IonToolbar, IonSearchbar, IonTitle, IonSegment, IonSegmentButton, IonContent, IonPage, IonButtons, IonMenuButton, IonButton, IonIcon, IonLabel } from '@ionic/react';
 import { options } from 'ionicons/icons';
-import QuizzesListFilter from "../components/QuizzesListFilter";
-import QuizzesContent from "../components/QuizzesContent";
+import QuizzesListFilter from "../components/Quizzes/QuizzesListFilter";
+import QuizzesContent from "../components/Quizzes/QuizzesContent";
 import { useQuery } from "@apollo/react-hooks";
 import { GET_SCHOOL_SUBJECTS } from "../utils/SchoolSubject";
-import Loading from "../components/Loading";
+import Loading from "../components/Utils/Loading";
 
 const Quizzes = () => {
   const [segment, setSegment] = useState('all');

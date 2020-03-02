@@ -1,6 +1,6 @@
 import React from 'react';
 import { IonContent, IonSpinner } from '@ionic/react';
-import './../css/Loading.scss'
+import './../../css/Loading.scss'
 
 const Loading = () => {
   return (

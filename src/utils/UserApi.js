@@ -29,4 +29,12 @@ mutation($email: String!, $password: String!) {
 }
 `;
 
-
+export const OWN_SCHOOLCLASSES = gql`
+  query {
+    currentUser {
+    schoolClasses {
+      id,
+      name
+    }
+  }}
+`;

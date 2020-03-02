@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { IonHeader, IonBackButton, IonModal, IonToolbar, IonSearchbar, IonTitle, IonSegment, IonSegmentButton, IonContent, IonPage, IonButtons, IonMenuButton, IonListHeader, IonButton, IonIcon, IonDatetime, IonSelectOption, IonList, IonItem, IonLabel, IonSelect, IonPopover, IonAvatar } from '@ionic/react';
-import QuizInformationModal from './QuizInformationModal';
+import QuizInformationModal from '../QuizInformationModal/QuizInformationModal';
 
 const QuizzesList = ({ quizzesList, hide }) => {
   const [showQuizModal, setShowQuizModal] = useState({ quizId: '', display: false });
