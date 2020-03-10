@@ -25,7 +25,7 @@ const routes = {
         titleList: 'Navigation',
         links: [
           { title: 'Quizzes', path: '/quizzes', icon: list },
-          { title: 'Speakers', path: '/speakers', icon: contacts },
+          { title: 'School classes', path: '/schoolClasses', icon: contacts },
           { title: 'Map', path: '/map', icon: map },
           { title: 'About', path: '/about', icon: informationCircle },
           { title: 'Logout', path: '/logout', icon: informationCircle }

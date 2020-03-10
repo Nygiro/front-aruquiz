@@ -1,11 +1,10 @@
 import React from 'react';
 import { IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/react';
-import { Route, Redirect } from 'react-router';
+import { Route } from 'react-router';
 import { calendar, contacts, map, informationCircle } from 'ionicons/icons';
-import About from './About';
 import Quizzes from './Quizzes';
 import RedirectLogout from '../components/Utils/RedirectLogout';
-import Quiz from './Quiz';
+import SchoolClasses from './SchoolClasses';
 
 
 const MainTabs = () => {
@@ -13,7 +12,7 @@ const MainTabs = () => {
     <IonTabs>
       <IonRouterOutlet>
         <Route path="/quizzes" component={Quizzes} exact />
-        <Route path="/about" component={About} exact />
+        <Route path="/schoolClasses" component={SchoolClasses} exact />
         <Route path="/logout" component={RedirectLogout} exact />
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
