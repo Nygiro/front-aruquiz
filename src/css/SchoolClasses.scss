@@ -1,0 +1,12 @@
+.icon-cross, .icon-validate, .icon-validate-2 {
+    width: 20px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+}
+
+.icon-validate-2 {
+    right: 45px;
+}

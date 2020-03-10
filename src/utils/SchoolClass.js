@@ -12,5 +12,4 @@ query quiz($quizId: ID!){
       userName
     }
   }
-}
-`;
+}`;

@@ -1,14 +1,15 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { IonHeader, IonModal, IonToolbar, IonSearchbar, IonTitle, IonSegment, IonSegmentButton, IonContent, IonPage, IonButtons, IonMenuButton, IonButton, IonIcon, IonLabel } from '@ionic/react';
 import SchoolClassesList from '../components/SchoolClasses/SchoolClassesList';
 import { useQuery } from '@apollo/react-hooks';
 import { options } from 'ionicons/icons';
-import SchoolClassesCreate from '../components/SchoolClasses/SchoolClassesForm';
+import SchoolClassesFormCreateModal from '../components/SchoolClasses/SchoolClassesFormCreateModal';
+import './../css/SchoolClasses.scss';
 
 const SchoolClasses = () => {
-    const [showFilterModal, setShowFilterModal] = useState(false);
-    const [searchQuizInput, setSearchQuizInput] = useState('');
-return (
+  const [showModal, setShowModal] = useState(false);
+  const [searchQuizInput, setSearchQuizInput] = useState('');
+  return (
     <IonPage id="schoolClasses-page">
       <IonHeader>
         <IonToolbar>
@@ -17,7 +18,7 @@ return (
           </IonButtons>
           <IonTitle>School classes</IonTitle>
           <IonButtons slot="end">
-            <IonButton onClick={() => setShowFilterModal(true)}>
+            <IonButton onClick={() => setShowModal(true)}>
               <IonIcon icon={options} slot="icon-only" />
             </IonButton>
           </IonButtons>
@@ -27,15 +28,14 @@ return (
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <SchoolClassesList searchQuizInput={searchQuizInput}/>
+        <SchoolClassesList searchQuizInput={searchQuizInput} showModalFormCreate={showModal}/>
       </IonContent>
-      <IonModal isOpen={showFilterModal} onDidDismiss={() => setShowFilterModal(false)}>
-        <SchoolClassesCreate
-          onDismissModal={() => setShowFilterModal(false)}
+      <IonModal isOpen={showModal} onDidDismiss={() => setShowModal(false)}>
+        <SchoolClassesFormCreateModal setShowModal={setShowModal}
         />
       </IonModal>
     </IonPage >
-)
+  )
 }
 
 export default SchoolClasses;

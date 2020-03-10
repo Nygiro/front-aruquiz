@@ -12,12 +12,14 @@ const OptionsStudents = ({ selectedClassId }) => {
       variables: { schoolClassId: selectedClassId },
     })
 
+  console.log(dataForStudentsBySchoolClass);
+
   if (loadingForStudentsBySchoolClass) return <Loading />;
   if (errorForStudentsBySchoolClass) return 'Error!';
 
-  const renderOptionsStudents = dataForStudentsBySchoolClass.schoolClass.students.map(({ id, firstName, lastName }) => (
+  const renderOptionsStudents = dataForStudentsBySchoolClass.schoolClass.students.map(({ id, name }) => (
     <IonSelectOption key={id} value={id}>
-      {firstName} - {lastName}
+      {name}
     </IonSelectOption>
   ))
 

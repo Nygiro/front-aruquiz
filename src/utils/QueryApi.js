@@ -5,8 +5,24 @@ query schoolClass($schoolClassId: ID!){
   schoolClass(schoolClassId: $schoolClassId){
     students {
       id,
-      firstName
-      lastName
+      name
     }
   }
 }`;
+
+
+export const GET_SCHOOL_CLASSES_BY_CURRENT_USER = gql`
+query schoolClassesByCurrentUser($search: String = "") {
+  schoolClassesByCurrentUser(search: $search) {
+    id,
+    name,
+    students {
+      id,
+      name
+    }
+  }
+}`;
+
+
+
+
