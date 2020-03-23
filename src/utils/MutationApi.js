@@ -18,8 +18,8 @@ mutation deleteClass($schoolClassId: ID!) {
 
 
 export const CREATE_STUDENT = gql`
-mutation createStudent($name: String!, $schoolClassId: ID!) {
-  createStudent(name: $name, schoolClassId: $schoolClassId) {
+mutation createStudent($name: String!, $schoolClassId: ID!, $markerId: String!) {
+  createStudent(name: $name, schoolClassId: $schoolClassId, markerId: $markerId) {
     id,
     name
   }
@@ -27,8 +27,8 @@ mutation createStudent($name: String!, $schoolClassId: ID!) {
 
 
 export const UPDATE_STUDENT = gql`
-mutation updateStudent($name: String!, $studentId: ID!) {
-  updateStudent(name: $name, studentId: $studentId) {
+mutation updateStudent($name: String!, $studentId: ID!, $markerId: String!) {
+  updateStudent(name: $name, studentId: $studentId, markerId: $markerId) {
     id
   }
 }
@@ -43,5 +43,14 @@ mutation deleteStudent($studentId: ID!) {
 }
 `;
 
+
+export const CREATE_QUIZ = gql`
+mutation createQuiz($name: String!, $schoolSubjectId: ID!) {
+  createQuiz(name: $name, schoolSubjectId: $schoolSubjectId) {
+    id,
+    name
+  }
+}
+`;
 
 

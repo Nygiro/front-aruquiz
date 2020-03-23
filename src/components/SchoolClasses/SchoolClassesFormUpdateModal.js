@@ -26,7 +26,8 @@ const SchoolClassesFormUpdateModal = ({ showModal, setShowModal, schoolClass }) 
     const studentslist = schoolClass.students.map(student => {
       return {
         id: student.id,
-        name: student.name
+        name: student.name,
+        markerId: student.markerId
       }
     })
     setStudents(studentslist)
@@ -43,8 +44,17 @@ const SchoolClassesFormUpdateModal = ({ showModal, setShowModal, schoolClass }) 
 
   const handleSetStudent = (value, id, index) => {
     students[index] = {
+      ...students[index],
       name: value,
       id
+    };
+    setStudents(students)
+  }
+
+  const handleSetStudentMarkerId = (markerId, id, index) => {
+    students[index] = {
+      ...students[index],
+      markerId
     };
     setStudents(students)
   }
@@ -55,12 +65,12 @@ const SchoolClassesFormUpdateModal = ({ showModal, setShowModal, schoolClass }) 
   }
 
   const handleCreateStudent = (student, i) => {
-    createStudent({ variables: { name: student.name, schoolClassId: schoolClass.id } })
+    createStudent({ variables: { name: student.name, schoolClassId: schoolClass.id, markerId: student.markerId } })
     setStudentIndexToUpdate(i);
   }
 
   const handleUpdateStudent = (student, i) => {
-    updateStudent({ variables: { name: student.name, studentId: student.id } })
+    updateStudent({ variables: { name: student.name, studentId: student.id, markerId: student.markerId } })
     setStudentIndexToUpdate(i);
   }
 
@@ -71,27 +81,37 @@ const SchoolClassesFormUpdateModal = ({ showModal, setShowModal, schoolClass }) 
   }
 
 
-  const renderStudentsInput = (students.length > 0) ? students.map(({ name, id }, i) => {
+  const renderStudentsInput = (students.length > 0) ? students.map(({ name, id, markerId }, i) => {
     return (
       <Fragment key={i}>
-        <IonItem >
-          <IonLabel position="floating" color="primary">Enter student name</IonLabel>
-          <IonInput minlength={1} value={name} onIonChange={e => handleSetStudent(e.target.value, id, i)} />
-          {id === '' ? (
-            <img src={Validate}
-              className={'icon-validate'}
-              onClick={(e) => handleCreateStudent(students[i], i)} />
-          ) :
-            <>
-              <img src={Validate}
-                className={'icon-validate-2'}
-                onClick={(e) => handleUpdateStudent(students[i], i)} />
-              <img src={Cross}
-                className={'icon-cross'}
-                onClick={() => handleDeleteStudent(id, i)} />
-            </>
-          }
-        </IonItem>
+        <IonRow>
+          <IonCol size="2">
+            <IonItem class="ion-text-center">
+              <IonLabel position="floating" color="primary">Id</IonLabel>
+              <IonInput value={markerId} type="number" min={1} max={50} placeholder="Id" onIonChange={e => handleSetStudentMarkerId(e.target.value, id, i)}></IonInput>
+            </IonItem>
+          </IonCol>
+          <IonCol size="10">
+            <IonItem >
+              <IonLabel position="floating" color="primary">Enter student name</IonLabel>
+              <IonInput minlength={1} value={name} onIonChange={e => handleSetStudent(e.target.value, id, i)} />
+              {id === '' ? (
+                <img src={Validate}
+                  className={'icon-validate'}
+                  onClick={(e) => handleCreateStudent(students[i], i)} />
+              ) :
+                <>
+                  <img src={Validate}
+                    className={'icon-validate-2'}
+                    onClick={(e) => handleUpdateStudent(students[i], i)} />
+                  <img src={Cross}
+                    className={'icon-cross'}
+                    onClick={() => handleDeleteStudent(id, i)} />
+                </>
+              }
+            </IonItem>
+          </IonCol>
+        </IonRow>
       </Fragment>
 
     )
@@ -116,7 +136,7 @@ const SchoolClassesFormUpdateModal = ({ showModal, setShowModal, schoolClass }) 
         </IonList>
         <IonRow>
           <IonCol>
-            <IonButton expand="block" onClick={() => setStudents([...students, { id: '', name: '' }])} >Add new student</IonButton>
+            <IonButton expand="block" onClick={() => setStudents([...students, { id: '', name: '', markerId: '' }])} >Add new student</IonButton>
             <IonButton expand="block" onClick={() => handleDeleteSchoolClass()} >Delete class</IonButton>
           </IonCol>
         </IonRow>

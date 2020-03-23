@@ -12,8 +12,6 @@ const OptionsStudents = ({ selectedClassId }) => {
       variables: { schoolClassId: selectedClassId },
     })
 
-  console.log(dataForStudentsBySchoolClass);
-
   if (loadingForStudentsBySchoolClass) return <Loading />;
   if (errorForStudentsBySchoolClass) return 'Error!';
 

@@ -4,18 +4,29 @@ import { useQuery } from "@apollo/react-hooks";
 import Loading from "../components/Utils/Loading";
 import { GET_QUIZ } from "../utils/QuizApi";
 import CameraDetector from "../components/Quiz/CameraDetector";
+import { ARUQUIZ_CURRENT_LIST_STUDENTS_FOR_QUIZ } from "../utils/Constants";
+import { GET_STUDENTS_BY_STUDENTS_ID } from "../utils/QueryApi";
 
 const Quiz = () => {
   const { quizId } = useParams();
-  console.log(quizId);
+  const [schoolClass, setSchoolClass] = useState(null)
+  const [students, setStudents] = useState(null);
+  const [openCamera, setOpenCamera] = useState(false);
+
   const { loading, error, data: dataForQuiz } = useQuery(GET_QUIZ, {
     variables: { quizId },
   });
 
+  const { loading: loadingforStudents, error: errorForStudents, data: dataForStudents } = useQuery(GET_STUDENTS_BY_STUDENTS_ID, {
+    variables: {
+      studentsId: JSON.parse(localStorage.getItem(ARUQUIZ_CURRENT_LIST_STUDENTS_FOR_QUIZ))
+    },
+  });
 
-  const [openCamera, setOpenCamera] = useState(false);
+
   useEffect(() => {
-    setOpenCamera(false);
+    // setStudents())
+    // setOpenCamera(false);
   }, []);
 
 
@@ -35,7 +46,7 @@ const Quiz = () => {
   return (
     <>
       <div>
-        <CameraDetector/>
+        {/* <CameraDetector/> */}
       </div>
     </>
   )

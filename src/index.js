@@ -24,7 +24,7 @@ import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 
 import './css/Variable.scss';
-import { ARUQUIZ_USER_IS_LOGGED_IN, ARUQUIZ_USER_USERNAME, ARUQUIZ_USER_TOKEN } from './utils/Constants';
+import { ARUQUIZ_USER_IS_LOGGED_IN, ARUQUIZ_USER_USERNAME, ARUQUIZ_USER_TOKEN, ARUQUIZ_CURRENT_SCHOOL_CLASS } from './utils/Constants';
 
 const client = new ApolloClient({
     uri: process.env.REACT_APP_PRISMA_API_ENDPOINT,
@@ -46,6 +46,8 @@ client.writeData({
         isLoggedIn: localStorage.getItem(ARUQUIZ_USER_IS_LOGGED_IN),
         userName: localStorage.getItem(ARUQUIZ_USER_USERNAME),
         userToken: localStorage.getItem(ARUQUIZ_USER_TOKEN),
+        currentSchoolClassesForQuiz: null, 
+        currentListStudentsForQuiz: null, 
     }
 })
 

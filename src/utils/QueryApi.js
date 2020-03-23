@@ -5,7 +5,8 @@ query schoolClass($schoolClassId: ID!){
   schoolClass(schoolClassId: $schoolClassId){
     students {
       id,
-      name
+      name,
+      markerId
     }
   }
 }`;
@@ -18,10 +19,22 @@ query schoolClassesByCurrentUser($search: String = "") {
     name,
     students {
       id,
-      name
+      name,
+      markerId
     }
   }
 }`;
+
+
+export const GET_STUDENTS_BY_STUDENTS_ID = gql`
+  query students($studentsId: [ID!]!) {
+    students(studentsId: $studentsId) {
+        id,
+        name,
+        markerId
+    }
+  }
+`
 
 
 
