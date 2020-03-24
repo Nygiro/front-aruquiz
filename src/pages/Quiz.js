@@ -17,11 +17,6 @@ const Quiz = () => {
     variables: { quizId },
   });
 
-  const { loading: loadingforStudents, error: errorForStudents, data: dataForStudents } = useQuery(GET_STUDENTS_BY_STUDENTS_ID, {
-    variables: {
-      studentsId: JSON.parse(localStorage.getItem(ARUQUIZ_CURRENT_LIST_STUDENTS_FOR_QUIZ))
-    },
-  });
 
 
   useEffect(() => {

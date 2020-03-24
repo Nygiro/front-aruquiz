@@ -53,4 +53,30 @@ mutation createQuiz($name: String!, $schoolSubjectId: ID!) {
 }
 `;
 
+export const UPSERT_QUESTION = gql`
+mutation upsertQuestion($label: String!, $quizId: ID!, $questionId: ID) {
+  upsertQuestion(label: $label, quizId: $quizId, questionId: $questionId) {
+    id,
+    label
+  }
+}`;
+
+export const UPSERT_ANSWER = gql`
+mutation upsertAnswer($label: String!, $isRight: Boolean, $questionId: ID!, $answerId: ID) {
+  upsertAnswer(label: $label, isRight: $isRight, questionId: $questionId, answerId: $answerId) {
+    id,
+    label,
+    isRight
+  }
+}`;
+
+export const UPDATE_ANSWER_IS_RIGHT_FIELD = gql`
+mutation updateAnswerIsRightField($answerId: ID!, $isRight: Boolean) {
+  updateAnswerIsRightField(answerId: $answerId, isRight: $isRight) {
+    id,
+    label,
+    isRight
+  }
+}`;
+
 

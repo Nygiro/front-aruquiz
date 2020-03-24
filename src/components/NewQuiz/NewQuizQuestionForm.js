@@ -1,14 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IonItem, IonLabel, IonTextarea } from '@ionic/react';
-
-const NewQuizQuestionForm = ({ quiz }) => {
+const NewQuizQuestionForm = ({ question, setQuestion }) => {
   return (
-    <>
-      <IonItem >
-        <IonLabel position="floating" color="primary">Veuillez renseigner l'intitulé de la question</IonLabel>
-        <IonTextarea minlength={1} value={'question.name'} onIonChange={e => console.log('setQuestion')} />
-      </IonItem>
-    </>
+    <IonItem >
+      <IonLabel position="floating" >Veuillez renseigner l'intitulé de la question</IonLabel>
+      <IonTextarea minlength={1} value={question.name} onIonChange={e => setQuestion({ ...question, name: e.target.value })} />
+    </IonItem>
   )
 }
 

@@ -1,58 +1,80 @@
-import React from 'react';
-import { IonGrid, IonRow, IonCol, IonItem, IonLabel, IonInput } from '@ionic/react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSquare, faArrowCircleRight } from '@fortawesome/free-solid-svg-icons'
+import React, { useEffect } from 'react';
+import { IonGrid, IonRadioGroup, IonRow, IonCol, IonItem, IonLabel, IonRadio, IonInput } from '@ionic/react';
 
-const NewQuizAnswersForm = () => {
-  let answers = [];
+const NewQuizAnswersForm = ({ question, setQuestion, setLastAnswerIndexUpdate }) => {
+  const handleSetAnswersLabel = (value, i) => {
+    let newQuestion = { ...question }
+    newQuestion.answers[i] = { ...newQuestion.answers[i], label: value };
+    setQuestion(newQuestion)
+    setLastAnswerIndexUpdate(i)
+  }
+  const handleSetAnswersIsRight = (value, i) => {
+    question.answers = question.answers.map(answer => {
+      return { ...answer, isRight: false }
+    })
+    let newQuestion = { ...question }
+    newQuestion.answers[i] = { ...question.answers[i], isRight: value };
+    setQuestion(question)
+    setLastAnswerIndexUpdate(i)
+  }
 
   return (
     <>
       <IonGrid >
-        <IonRow>
-          <IonCol size="2" className={'ion-align-self-center ion-text-center'}>
-            <FontAwesomeIcon icon={faSquare} />
-          </IonCol>
-          <IonCol size="8" >
-            <IonItem>
+        <IonRadioGroup>
+          <IonRow>
+            <IonCol size="2" className={'ion-align-self-center ion-text-center'}>
+              <IonRadio onClick={() => handleSetAnswersIsRight(true, 0)} />
+            </IonCol>
+            <IonCol size="8" >
               <IonLabel position="floating" color="primary">Response A</IonLabel>
-              <IonInput minlength={1} value={'name'} onIonChange={e => console.log('toto')} />
-            </IonItem>
-          </IonCol>
-        </IonRow>
-        <IonRow>
-          <IonCol size="2" className={'ion-align-self-center ion-text-center'}>
-            <FontAwesomeIcon icon={faSquare} />
-          </IonCol>
-          <IonCol size="8">
-            <IonItem>
+              <IonInput
+                minlength={1}
+                value={question.answers[0].label}
+                onIonChange={e => handleSetAnswersLabel(e.target.value, 0)}
+              />
+            </IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCol size="2" className={'ion-align-self-center ion-text-center'}>
+              <IonRadio onClick={() => handleSetAnswersIsRight(true, 1)} />
+            </IonCol>
+            <IonCol size="8">
               <IonLabel position="floating" color="primary">Response B</IonLabel>
-              <IonInput minlength={1} value={'name'} onIonChange={e => console.log('toto')} />
-            </IonItem>
-          </IonCol>
-        </IonRow>
-        <IonRow>
-          <IonCol size="2" className={'ion-align-self-center ion-text-center'}>
-            <FontAwesomeIcon icon={faSquare} />
-          </IonCol>
-          <IonCol size="8">
-            <IonItem>
+              <IonInput
+                minlength={1}
+                value={question.answers[1].label}
+                onIonChange={e => handleSetAnswersLabel(e.target.value, 1)}
+              />
+            </IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCol size="2" className={'ion-align-self-center ion-text-center'}>
+              <IonRadio onClick={() => handleSetAnswersIsRight(true, 2)} />
+            </IonCol>
+            <IonCol size="8">
               <IonLabel position="floating" color="primary">Response C</IonLabel>
-              <IonInput minlength={1} value={'name'} onIonChange={e => console.log('toto')} />
-            </IonItem>
-          </IonCol>
-        </IonRow>
-        <IonRow>
-          <IonCol size="2" className={'ion-align-self-center ion-text-center'}>
-            <FontAwesomeIcon icon={faSquare} />
-          </IonCol>
-          <IonCol size="8">
-            <IonItem>
+              <IonInput
+                minlength={1}
+                value={question.answers[2].label}
+                onIonChange={e => handleSetAnswersLabel(e.target.value, 2)}
+              />
+            </IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCol size="2" className={'ion-align-self-center ion-text-center'}>
+              <IonRadio onClick={() => handleSetAnswersIsRight(true, 3)} />
+            </IonCol>
+            <IonCol size="8">
               <IonLabel position="floating" color="primary">Response D</IonLabel>
-              <IonInput minlength={1} value={'name'} onIonChange={e => console.log('toto')} />
-            </IonItem>
-          </IonCol>
-        </IonRow>
+              <IonInput
+                minlength={1}
+                value={question.answers[3].label}
+                onIonChange={e => handleSetAnswersLabel(e.target.value, 3)}
+              />
+            </IonCol>
+          </IonRow>
+        </IonRadioGroup>
       </IonGrid>
     </>
   )
