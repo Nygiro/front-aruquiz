@@ -6,6 +6,7 @@ import NewQuizAnswersForm from "../components/NewQuiz/NewQuizAnswersForm";
 import NewQuizDetailsForm from "../components/NewQuiz/NewQuizDetailsForm";
 import NewQuizQuestionNumber from "../components/NewQuiz/NewQuizQuestionNumber";
 import NewQuizHeader from "../components/NewQuiz/NewQuizHeader";
+import './../css/NewQuiz.scss';
 
 const NewQuiz = () => {
   const [quiz, setQuiz] = useState({ id: '', name: '', schoolSubjectId: '' });
