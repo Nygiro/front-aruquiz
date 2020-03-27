@@ -1,19 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import NewQuizAnswersForm from './NewQuizAnswersForm';
 import NewQuizQuestionForm from './NewQuizQuestionForm';
 import { useMutation } from '@apollo/react-hooks';
 import { UPSERT_QUESTION, UPSERT_ANSWER, UPDATE_ANSWER_IS_RIGHT_FIELD } from '../../utils/MutationApi';
 import NewQuizQuestionNumber from './NewQuizQuestionNumber';
-import Loading from '../Utils/Loading';
-import { usePrevious } from '../../utils/Hook';
+import NewQuizBtnExitQuiz from './NewQuizBtnExitQuiz';
+import { useDebounce } from 'use-debounce';
 
 const NewQuizDetailsForm = ({ quiz }) => {
-  const [upsertQuestion, { data: dataForUpsertQuestion, loading: loadingForUpsertQuestion }] = useMutation(UPSERT_QUESTION);
-  const [upsetAnswer, { data: dataForUpsertAnswer, loading: loadingForUpsertAnswer }] = useMutation(UPSERT_ANSWER);
-  const [updateAnswerIsRightField, {
-    data: dataForupdateAnswerIsRightField,
-    loading: loadingForupdateAnswerIsRightField
-  }] = useMutation(UPDATE_ANSWER_IS_RIGHT_FIELD);
+  const [upsertQuestion, { data: dataForUpsertQuestion }] = useMutation(UPSERT_QUESTION);
+  const [upsetAnswer, { data: dataForUpsertAnswer }] = useMutation(UPSERT_ANSWER);
+  const [updateAnswerIsRightField] = useMutation(UPDATE_ANSWER_IS_RIGHT_FIELD);
   const defaultQuestionState = {
     number: 1,
     name: '',
@@ -25,24 +22,22 @@ const NewQuizDetailsForm = ({ quiz }) => {
       { label: '', isRight: false, id: null }
     ]
   };
-
-
   const [nbCurrentQuestion, setNbCurrentQuestion] = useState(1);
-  const [question, setQuestion] = useState(defaultQuestionState)
 
+  const [question, setQuestion] = useState(defaultQuestionState)
+  const [debounceQuestion] = useDebounce(question, 500);
 
   const [lastAnswerIndexUpdate, setLastAnswerIndexUpdate] = useState(null)
+  // const [debounceLastAnswerIndexUpdate] = useDebounce(lastAnswerIndexUpdate, 500);
 
   const [questions, setQuestions] = useState([]);
 
-
   useEffect(() => {
-    if (question.name !== '') {
-      let questionId = (question.id === null) ? '' : question.id;
-      upsertQuestion({ variables: { label: question.name, quizId: quiz.id, questionId: questionId } })
+    if (debounceQuestion.name !== '') {
+      let questionId = (debounceQuestion.id === null) ? '' : debounceQuestion.id;
+      upsertQuestion({ variables: { label: debounceQuestion.name, quizId: quiz.id, questionId: questionId } })
     }
-  }, [question])
-
+  }, [debounceQuestion])
 
   useEffect(() => {
     if (dataForUpsertQuestion !== undefined && question.id === null) {
@@ -52,7 +47,6 @@ const NewQuizDetailsForm = ({ quiz }) => {
 
 
   useEffect(() => {
-
     let questionAtNumber = questions.filter(({ number }) => number === nbCurrentQuestion)
     if (questionAtNumber.length > 0) {
       setQuestion(questionAtNumber[0])
@@ -67,10 +61,7 @@ const NewQuizDetailsForm = ({ quiz }) => {
     } else {
       setQuestion({ ...defaultQuestionState })
     }
-
   }, [nbCurrentQuestion])
-
-
 
 
   useEffect(() => {
@@ -80,14 +71,10 @@ const NewQuizDetailsForm = ({ quiz }) => {
     } else if (questionAtNumber.length === 1) {
       let newQuestions = [...questions];
       newQuestions[nbCurrentQuestion - 1] = { ...question, number: nbCurrentQuestion };
-      console.log(newQuestions)
       setQuestions(newQuestions)
     }
 
   }, [question])
-
-
-
 
   useEffect(() => {
     if (lastAnswerIndexUpdate !== null && question.id !== null) {
@@ -119,9 +106,6 @@ const NewQuizDetailsForm = ({ quiz }) => {
     }
   }, [lastAnswerIndexUpdate])
 
-
-
-
   useEffect(() => {
     if (dataForUpsertAnswer !== undefined) {
       let newQuestion = { ...question }
@@ -131,19 +115,12 @@ const NewQuizDetailsForm = ({ quiz }) => {
     }
   }, [dataForUpsertAnswer])
 
-
-
-
-
-  if (loadingForUpsertQuestion && question.id === null || loadingForUpsertAnswer && setLastAnswerIndexUpdate === null) {
-    return <Loading />
-  }
-
   return (
     <>
       <NewQuizQuestionNumber nbCurrentQuestion={nbCurrentQuestion} setNbCurrentQuestion={setNbCurrentQuestion} questions={questions} />
       <NewQuizQuestionForm question={question} setQuestion={setQuestion} />
       <NewQuizAnswersForm question={question} setQuestion={setQuestion} setLastAnswerIndexUpdate={setLastAnswerIndexUpdate} />
+      <NewQuizBtnExitQuiz quiz={quiz} />
     </>
   )
 }

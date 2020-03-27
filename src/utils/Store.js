@@ -29,3 +29,10 @@ export const GET_CURRENT_LIST_STUDENTS_FOR_QUIZ = gql`
     currentListStudentsForQuiz @client
   }
 `;
+
+
+export const GET_CURRENT_CREATED_REPORT = gql`
+  {
+    currentCreatedReport @client
+  }
+`;

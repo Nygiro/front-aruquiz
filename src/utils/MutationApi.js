@@ -80,3 +80,18 @@ mutation updateAnswerIsRightField($answerId: ID!, $isRight: Boolean) {
 }`;
 
 
+export const DELETE_QUIZ = gql`
+mutation deleteQuiz($quizId: ID!) {
+  deleteQuiz(quizId: $quizId) {
+    id
+  }
+}
+`;
+
+
+export const CREATE_REPORT = gql`
+mutation createReport($schoolClassId: ID!, $studentId: ID!, $quizId: ID!, $questionId: ID!, $answerId: ID!) {
+  createReport(schoolClassId: $schoolClassId, studentId: $studentId, quizId: $quizId, questionId: $questionId, answerId: $answerId) {
+    id,
+  }
+}`;

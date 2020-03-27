@@ -25,6 +25,15 @@ query quiz($quizId: ID!){
     },
     createdBy {
       userName
+    },
+    questions {
+      id,
+      label,
+      answers {
+        id,
+        label,
+        isRight
+      }
     }
   }
 }

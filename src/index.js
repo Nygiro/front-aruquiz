@@ -48,6 +48,7 @@ client.writeData({
         userToken: localStorage.getItem(ARUQUIZ_USER_TOKEN),
         currentSchoolClassesForQuiz: null, 
         currentListStudentsForQuiz: null, 
+        currentCreatedReport: []
     }
 })
 

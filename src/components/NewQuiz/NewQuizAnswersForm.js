@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IonGrid, IonRadioGroup, IonRow, IonCol, IonItem, IonLabel, IonRadio, IonInput } from '@ionic/react';
-
 const NewQuizAnswersForm = ({ question, setQuestion, setLastAnswerIndexUpdate }) => {
+  const [rightIndexQuestion, setRightIndexQuestion] = useState(0)
   const handleSetAnswersLabel = (value, i) => {
     let newQuestion = { ...question }
     newQuestion.answers[i] = { ...newQuestion.answers[i], label: value };
@@ -16,15 +16,16 @@ const NewQuizAnswersForm = ({ question, setQuestion, setLastAnswerIndexUpdate })
     newQuestion.answers[i] = { ...question.answers[i], isRight: value };
     setQuestion(question)
     setLastAnswerIndexUpdate(i)
+    setRightIndexQuestion(i)
   }
 
   return (
     <>
       <IonGrid >
-        <IonRadioGroup>
+        <IonRadioGroup value={rightIndexQuestion.toString()}>
           <IonRow>
             <IonCol size="2" className={'ion-align-self-center ion-text-center'}>
-              <IonRadio onClick={() => handleSetAnswersIsRight(true, 0)} />
+              <IonRadio value="0" onClick={() => handleSetAnswersIsRight(true, 0)} />
             </IonCol>
             <IonCol size="8" >
               <IonLabel position="floating" color="primary">Response A</IonLabel>
@@ -37,7 +38,7 @@ const NewQuizAnswersForm = ({ question, setQuestion, setLastAnswerIndexUpdate })
           </IonRow>
           <IonRow>
             <IonCol size="2" className={'ion-align-self-center ion-text-center'}>
-              <IonRadio onClick={() => handleSetAnswersIsRight(true, 1)} />
+              <IonRadio value="1" onClick={() => handleSetAnswersIsRight(true, 1)} />
             </IonCol>
             <IonCol size="8">
               <IonLabel position="floating" color="primary">Response B</IonLabel>
@@ -50,7 +51,7 @@ const NewQuizAnswersForm = ({ question, setQuestion, setLastAnswerIndexUpdate })
           </IonRow>
           <IonRow>
             <IonCol size="2" className={'ion-align-self-center ion-text-center'}>
-              <IonRadio onClick={() => handleSetAnswersIsRight(true, 2)} />
+              <IonRadio value="2" onClick={() => handleSetAnswersIsRight(true, 2)} />
             </IonCol>
             <IonCol size="8">
               <IonLabel position="floating" color="primary">Response C</IonLabel>
@@ -63,7 +64,7 @@ const NewQuizAnswersForm = ({ question, setQuestion, setLastAnswerIndexUpdate })
           </IonRow>
           <IonRow>
             <IonCol size="2" className={'ion-align-self-center ion-text-center'}>
-              <IonRadio onClick={() => handleSetAnswersIsRight(true, 3)} />
+              <IonRadio value="3" onClick={() => handleSetAnswersIsRight(true, 3)} />
             </IonCol>
             <IonCol size="8">
               <IonLabel position="floating" color="primary">Response D</IonLabel>

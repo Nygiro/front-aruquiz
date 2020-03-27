@@ -12,7 +12,7 @@ const NewQuiz = () => {
   const [quiz, setQuiz] = useState({ id: '', name: '', schoolSubjectId: '' });
   return (
     <IonPage id="quizzes-page">
-      <NewQuizHeader />
+      <NewQuizHeader quiz={quiz}/>
       <IonContent>
         {quiz.id === '' ? (
           <NewQuizFormCreate setQuiz={setQuiz} quiz={quiz} />
