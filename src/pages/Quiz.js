@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import ReactDOM from 'react-dom'
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/react-hooks";
 import Loading from "../components/Utils/Loading";
@@ -8,11 +7,9 @@ import { ARUQUIZ_CURRENT_LIST_STUDENTS_FOR_QUIZ, ARUQUIZ_CURRENT_SCHOOL_CLASS_FO
 import { GET_STUDENTS_BY_STUDENTS_ID } from "../utils/QueryApi";
 import { IonHeader, IonItem, IonToolbar, IonTextarea, IonRow, IonCol, IonContent, IonPage, IonButtons, IonMenuButton, IonButton, IonIcon, IonLabel, IonInput, IonGrid } from '@ionic/react';
 import QuizHeader from "../components/Quiz/QuizHeader";
-import QuizDetails from "../components/Quiz/QuizDetails";
-import QuizResults from "../components/Quiz/QuizResults";
 import QuizCurrentQuestion from "../components/Quiz/QuizCurrentQuestion";
 import QuizFinalResults from "../components/Quiz/QuizFinalResults";
-import CameraDetector from "../components/Quiz/CameraDetector";
+import './../css/Quiz.scss';
 
 const Quiz = () => {
   const { quizId } = useParams();
@@ -34,6 +31,7 @@ const Quiz = () => {
   const { data: dataForStudents } = useQuery(GET_STUDENTS_BY_STUDENTS_ID, {
     variables: { studentsId: JSON.parse(localStorage.getItem(ARUQUIZ_CURRENT_LIST_STUDENTS_FOR_QUIZ)) }
   })
+  localStorage.setItem('nbCurrentQuestion', nbCurrentQuestion)
 
   useEffect(() => {
     if (dataForStudents !== undefined) {
@@ -43,6 +41,7 @@ const Quiz = () => {
 
 
   useEffect(() => {
+    console.log(answersByQuestion);
     localStorage.setItem('answersByQuestion', JSON.stringify(answersByQuestion))
     if (students !== null && answersByQuestion.length === students.length) {
       setOpenCamera(false);
@@ -85,7 +84,7 @@ const Quiz = () => {
   return (
     <>
       <IonPage id="quizzes-page">
-        <QuizHeader />
+        <QuizHeader  quiz={dataForQuiz.quiz} />
         <IonContent>
           {
             showFinalResults

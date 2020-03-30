@@ -4,7 +4,8 @@ import { useMutation } from '@apollo/react-hooks';
 import { CREATE_REPORT } from '../../utils/MutationApi';
 
 const ANSWERS = ['A', 'B', 'C', 'D'];
-const CameraDetector = ({ quiz, setMediaStream, students, schoolClassId, setAnswersByQuestion }) => {
+const CameraDetector = ({ quiz, setMediaStream, students, schoolClassId, setAnswersByQuestion, showResultsByQuestion, answersByQuestion }) => {
+
     console.log('force reload')
     const [createReport] = useMutation(CREATE_REPORT);
     const video = useRef('');
@@ -86,6 +87,7 @@ const CameraDetector = ({ quiz, setMediaStream, students, schoolClassId, setAnsw
     };
 
     const determinateResponse = (video) => {
+        console.log(localStorage.getItem('nbCurrentQuestion'))
         markers.forEach(marker => {
             let answersByQuestion = JSON.parse(localStorage.getItem('answersByQuestion'));
             if (localStorage.getItem('openCamera') === 'true') {
@@ -139,8 +141,9 @@ const CameraDetector = ({ quiz, setMediaStream, students, schoolClassId, setAnsw
 
     return (
         <div className="CameraDetector">
+            {!showResultsByQuestion && <div className={'nb-answer'}>{answersByQuestion.length} / {students.length}</div>}
             <video ref={video} autoPlay={true} style={{ display: 'none' }}></video>
-            <canvas ref={canvas} style={{ width: window.innerWidth, height: 300 }}></canvas>
+            <canvas ref={canvas} className={'canvas'}></canvas>
         </div>
     );
 };

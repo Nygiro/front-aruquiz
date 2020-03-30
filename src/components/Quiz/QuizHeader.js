@@ -1,7 +1,7 @@
 import React from 'react';
 import { IonHeader, IonItem, IonToolbar, IonTextarea, IonRow, IonCol, IonContent, IonPage, IonButtons, IonMenuButton, IonButton, IonIcon, IonLabel, IonInput, IonGrid } from '@ionic/react';
 
-const QuizHeader = () => {
+const QuizHeader = ({quiz}) => {
 
     return (
         <IonHeader>
@@ -9,7 +9,7 @@ const QuizHeader = () => {
           <IonButtons slot="start">
             <IonMenuButton></IonMenuButton>
           </IonButtons>
-          <IonItem className={'ion-text-center'}> 'toto</IonItem>
+          <IonItem className={'ion-text-center'}> {quiz !== undefined && quiz.name !== null && quiz.name}</IonItem>
         </IonToolbar>
       </IonHeader>
     )

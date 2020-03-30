@@ -1,27 +1,24 @@
 import React from 'react';
-import { IonItem, IonList, IonLabel } from '@ionic/react'
+import { IonItem, IonList, IonLabel, IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent } from '@ionic/react'
 
-const QuizQuestion = ({ quiz, nbCurrentQuestion }) => {
+const QuizQuestion = ({ quiz, nbCurrentQuestion, displayAnswer }) => {
+  console.log(displayAnswer);
   const propositionIndex = ['A', 'B', 'C', 'D'];
   const renderAnswersPropositions = quiz.questions[nbCurrentQuestion].answers.map(({ id, label, isRight }, index) => {
     return (
-      <IonItem key={id}>
-        <IonLabel>{propositionIndex[index]} : {label}</IonLabel>
-      </IonItem>
+      <div className={`answer answer-${propositionIndex[index]} ${displayAnswer ? isRight ? "good-answer" : 'bad-answer' : ''}`}
+        key={id}>{label}
+      </div>
     );
   })
   return (
     <>
-      <IonItem>
-        <IonLabel className="ion-text-wrap">
-          {quiz.questions[nbCurrentQuestion].label}
-        </IonLabel>
-      </IonItem>
-      <IonItem>
-        <IonList>
-          {renderAnswersPropositions}
-        </IonList>
-      </IonItem>
+      <div className={'question-label'}>
+        {quiz.questions[nbCurrentQuestion].label}
+      </div>
+      <div className={'answers-proposition'}>
+        {renderAnswersPropositions}
+      </div>
     </>
   )
 };

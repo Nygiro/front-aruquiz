@@ -1,0 +1,144 @@
+.question-number {
+  height: 5%;
+  margin-bottom: 3%;
+  margin-top: 2%;
+  p {
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    text-transform: uppercase;
+  }
+  .result-question {
+    background: #19D974;
+    border-radius: 7px;
+    text-transform: capitalize;
+  }
+  .next-question {
+    background: #117EEB;
+    text-transform: capitalize;
+    border-radius: 7px;
+  }
+}
+
+.question-label {
+  text-align: center;
+  height: 4%;
+  margin-bottom: 5%;
+  margin-top: 5%;
+}
+.answers-proposition {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  height: 40%;
+}
+
+.answer {
+  width: 43%;
+  height: 46%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  font-size: 14px;
+  text-align: center;
+  margin: 2%;
+  padding: 10px;
+  border: 5px solid #404668;
+  border-radius: 20px;
+  font-weight: 300;
+}
+.answer-label {
+  position: absolute;
+  left: -13px;
+  top: -10px;
+  border-radius: 50%;
+  background: #117EEB;
+  height: 25px;
+  width: 25px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid white;
+}
+.answer-A {
+  &::after {
+    content: 'A';
+    @extend .answer-label;
+  }
+}
+
+.answer-B {
+  &::after {
+    content: 'B';
+    @extend .answer-label;
+  }
+}
+
+.answer-C {
+  &::after {
+    content: 'C';
+    @extend .answer-label;
+  }
+}
+
+.answer-D {
+  &::after {
+    content: 'D';
+    @extend .answer-label;
+  }
+}
+
+.good-answer {
+  &::after {
+    background: #19D974;
+  }
+}
+
+.bad-answer {
+  &::after {
+    background: #f04141;
+  }
+}
+
+
+
+
+.CameraDetector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // border: 5px solid #404668;
+  width: 90%;
+  height: 40%;
+  margin: 0% 5%;
+  background: linear-gradient(90deg, rgba(250,80,110,1) 0%, rgba(179,110,249,1) 100%);;
+  position: relative;
+  border-radius: 20px;
+}
+
+.nb-answer {
+  position: absolute;
+  top: -12px;
+  left: -12px;
+  border-radius: 50%;
+  background: #117EEB;
+   height: 40px;
+   width: 40px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   opacity: 0.9;
+   color: white;
+   border: 1px solid white;
+}
+
+.canvas {
+  height: 100%;
+  width: 100%;
+  border-radius: 20px;
+  // border: 5px solid #404668;
+}
