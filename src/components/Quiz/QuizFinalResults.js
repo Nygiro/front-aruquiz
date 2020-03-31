@@ -27,18 +27,7 @@ const QuizFinalResults = ({ allResultsByQuestion }) => {
       </IonItem>
     )
   }
-  // const renderAnswersByStudents = answersByStudents.map({} => {
-  //   return (
-  //     <IonItem key={markerId} color={isRight ? 'success' : 'danger'}>
-  //       <IonLabel className="white">{studentName}</IonLabel>
-  //       <IonNote slot="end" className="white">{answerLabel}</IonNote>
-  //     </IonItem>
-  //   )
-  // })
 
-  const renderFinalResultsByStudent = allResultsByQuestion.map((question) => {
-    // console.log(question);
-  })
   return (
     <>
       <IonListHeader>

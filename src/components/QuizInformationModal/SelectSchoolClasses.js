@@ -10,8 +10,8 @@ const SelectSchoolClasses = ({ setSelectedClassId }) => {
   if (errorForSchoolClasses) return `Error!`;
   return (
     <IonItem>
-      <IonLabel>School Classes</IonLabel>
-      <IonSelect placeholder="Select one" onIonChange={(e) => setSelectedClassId(e.target.value)}>
+      <IonLabel>Mes classes</IonLabel>
+      <IonSelect placeholder="Choisir" onIonChange={(e) => setSelectedClassId(e.target.value)}>
         {dataForSchoolClasses.schoolClassesByCurrentUser.map(({ id, name }) => (
           <IonSelectOption key={name} value={id}>
             {name}

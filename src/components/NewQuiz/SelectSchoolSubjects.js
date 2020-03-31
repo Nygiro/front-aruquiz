@@ -12,7 +12,7 @@ const SelectSchoolSubjects = ({ setQuiz, quiz }) => {
   return (
     <IonItem>
       <IonLabel>Matière scolaire</IonLabel>
-      <IonSelect placeholder="Select one" onIonChange={(e) => setQuiz({ ...quiz, schoolSubjectId: e.target.value })}>
+      <IonSelect placeholder="Choisir" onIonChange={(e) => setQuiz({ ...quiz, schoolSubjectId: e.target.value })}>
         {dataForSchoolSubject.schoolSubjects.map(({ id, name }) => (
           <IonSelectOption key={name} value={id}>
             {name}

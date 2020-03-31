@@ -12,7 +12,7 @@ import {
   IonToolbar,
   IonToggle
 } from '@ionic/react';
-import { list, contacts, hammer, help, informationCircle, logIn, logOut, map, person, personAdd } from 'ionicons/icons';
+import { list, contacts, create, stats, informationCircle, logIn, logOut, map, person, personAdd } from 'ionicons/icons';
 import React, { useState } from 'react';
 import { GET_IS_DARK_MODE, GET_IS_LOGGED_IN } from './../utils/Store';
 import { useApolloClient, useQuery } from "@apollo/react-hooks";
@@ -24,11 +24,11 @@ const routes = {
       {
         titleList: 'Navigation',
         links: [
-          { title: 'Quizzes', path: '/quizzes', icon: list },
-          { title: 'School classes', path: '/schoolClasses', icon: contacts },
-          { title: 'Map', path: '/map', icon: map },
-          { title: 'About', path: '/about', icon: informationCircle },
-          { title: 'Logout', path: '/logout', icon: informationCircle }
+          { title: 'Quiz', path: '/quizzes', icon: list },
+          { title: 'Mes classes', path: '/schoolClasses', icon: contacts },
+          { title: 'Créer un quiz', path: '/new', icon: create },
+          { title: 'Rapport', path: '/report', icon: stats },
+          { title: 'Se déconnecter', path: '/logout', icon: logOut }
         ]
       }
     ],
@@ -36,9 +36,8 @@ const routes = {
     {
       titleList: 'Navigate',
       links: [
-        { title: 'Home', path: '/', icon: list },
-        { title: 'Sign in', path: '/signin', icon: contacts },
-        { title: 'Sign up', path: '/signup', icon: map },
+        { title: 'Accueil', path: '/', icon: list },
+        { title: 'Se connecter', path: '/signin', icon: logIn },
         { title: 'About', path: '/about', icon: informationCircle }
       ]
     }

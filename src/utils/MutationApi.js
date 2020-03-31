@@ -95,3 +95,11 @@ mutation createReport($schoolClassId: ID!, $studentId: ID!, $quizId: ID!, $quest
     id,
   }
 }`;
+
+export const UPSERT_STUDENT = gql`
+mutation upsertStudent($name: String!, $schoolClassId: ID!, $markerId: String!, $studentId: ID) {
+  upsertStudent(name: $name, schoolClassId: $schoolClassId, markerId: $markerId, studentId: $studentId) {
+    id,
+    name
+  }
+}`;

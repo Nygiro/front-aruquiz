@@ -40,7 +40,7 @@ const QuizInformationModal = ({ showModal, setShowModal, quizId }) => {
           <IonTitle>{dataForQuiz.quiz.name}</IonTitle>
           <IonBackButton></IonBackButton>
           <IonButtons slot="end">
-            <IonButton onClick={() => setShowModal({ quizId: '', display: false })}>Close</IonButton>
+            <IonButton onClick={() => setShowModal({ quizId: '', display: false })}>Fermer</IonButton>
           </IonButtons>
         </IonToolbar>
       </IonHeader>

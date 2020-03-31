@@ -26,7 +26,7 @@ const Quizzes = () => {
           <IonButtons slot="start">
             <IonMenuButton></IonMenuButton>
           </IonButtons>
-          <IonTitle>Quizzes</IonTitle>
+          <IonTitle>Quiz</IonTitle>
           <IonButtons slot="end">
             <IonButton onClick={() => setShowFilterModal(true)}>
               <IonIcon icon={options} slot="icon-only" />
@@ -36,13 +36,13 @@ const Quizzes = () => {
         <IonToolbar>
           <IonSegment>
             <IonSegmentButton value="all" checked={segment === 'all'} onClick={() => setSegment('all')}>
-              <IonLabel>All</IonLabel>
+              <IonLabel>Quiz</IonLabel>
             </IonSegmentButton>
             <IonSegmentButton value="own" checked={segment === 'own'} onClick={(e) => setSegment('own')}>
-              <IonLabel>Own</IonLabel>
+              <IonLabel>Mes quiz</IonLabel>
             </IonSegmentButton>
           </IonSegment>
-          <IonSearchbar placeholder="Search" onIonChange={(e) => setSearchQuizInput(e.detail.value)} value={searchQuizInput} />
+          <IonSearchbar placeholder="Recherche" onIonChange={(e) => setSearchQuizInput(e.detail.value)} value={searchQuizInput} />
         </IonToolbar>
       </IonHeader>
       <IonContent>

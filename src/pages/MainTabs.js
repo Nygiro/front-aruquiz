@@ -26,7 +26,7 @@ const MainTabs = () => {
         </IonTabButton>
         <IonTabButton tab="schoolClasses" href="/schoolClasses">
           <IonIcon icon={map} />
-          <IonLabel>Vos classes</IonLabel>
+          <IonLabel>Mes classes</IonLabel>
         </IonTabButton>
         <IonTabButton tab="report" href="/report">
           <IonIcon icon={stats} />

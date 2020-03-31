@@ -45,16 +45,16 @@ const QuizzesListFilter = ({ onDismissModal, setFilterQuizzes, filterQuizzes }) 
       <IonHeader>
         <IonToolbar>
           <IonTitle>
-            Filter Sessions
+            Choisir des matières
         </IonTitle>
           <IonButtons slot="end">
-            <IonButton onClick={onDismissModal} strong>Done</IonButton>
+            <IonButton onClick={onDismissModal} strong>Terminer</IonButton>
           </IonButtons>
         </IonToolbar>
       </IonHeader>
       <IonContent class="outer-content">
         <IonList>
-          <IonListHeader>Filter</IonListHeader>
+          <IonListHeader>Filtre par matière :</IonListHeader>
           <IonList>
             {renderFilterListItem}
           </IonList>
@@ -63,10 +63,10 @@ const QuizzesListFilter = ({ onDismissModal, setFilterQuizzes, filterQuizzes }) 
       <IonFooter>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonButton onClick={handleDeselectAll}>Deselect All</IonButton>
+            <IonButton onClick={handleDeselectAll}>Aucun filtre</IonButton>
           </IonButtons>
           <IonButtons slot="end">
-            <IonButton onClick={handleSelectAll}>Select All</IonButton>
+            <IonButton onClick={handleSelectAll}>Tous les filtres</IonButton>
           </IonButtons>
         </IonToolbar>
       </IonFooter>

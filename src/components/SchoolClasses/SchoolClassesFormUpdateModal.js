@@ -126,7 +126,7 @@ const SchoolClassesFormUpdateModal = ({ showModal, setShowModal, schoolClass }) 
           <IonTitle>{schoolClass.name}</IonTitle>
           <IonBackButton></IonBackButton>
           <IonButtons slot="end">
-            <IonButton onClick={() => setShowModal({ schoolClassId: '', display: false })}>Close</IonButton>
+            <IonButton onClick={() => setShowModal({ schoolClassId: '', display: false })}>Fermer</IonButton>
           </IonButtons>
         </IonToolbar>
       </IonHeader>
@@ -136,8 +136,8 @@ const SchoolClassesFormUpdateModal = ({ showModal, setShowModal, schoolClass }) 
         </IonList>
         <IonRow>
           <IonCol>
-            <IonButton expand="block" onClick={() => setStudents([...students, { id: '', name: '', markerId: '' }])} >Add new student</IonButton>
-            <IonButton expand="block" onClick={() => handleDeleteSchoolClass()} >Delete class</IonButton>
+            <IonButton expand="block" onClick={() => setStudents([...students, { id: '', name: '', markerId: '' }])} >Ajouter un élève</IonButton>
+            <IonButton expand="block" onClick={() => handleDeleteSchoolClass()} >Supprimer la classe</IonButton>
           </IonCol>
         </IonRow>
       </IonContent>

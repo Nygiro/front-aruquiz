@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { IonHeader, IonModal, IonToolbar, IonSearchbar, IonTitle, IonSegment, IonSegmentButton, IonContent, IonPage, IonButtons, IonMenuButton, IonButton, IonIcon, IonLabel } from '@ionic/react';
 import SchoolClassesList from '../components/SchoolClasses/SchoolClassesList';
 import { useQuery } from '@apollo/react-hooks';
-import { options } from 'ionicons/icons';
+import { addCircle } from 'ionicons/icons';
 import SchoolClassesFormCreateModal from '../components/SchoolClasses/SchoolClassesFormCreateModal';
 import './../css/SchoolClasses.scss';
 
@@ -16,15 +16,15 @@ const SchoolClasses = () => {
           <IonButtons slot="start">
             <IonMenuButton></IonMenuButton>
           </IonButtons>
-          <IonTitle>School classes</IonTitle>
+          <IonTitle>Mes classes</IonTitle>
           <IonButtons slot="end">
             <IonButton onClick={() => setShowModal(true)}>
-              <IonIcon icon={options} slot="icon-only" />
+              <IonIcon icon={addCircle} slot="icon-only" />
             </IonButton>
           </IonButtons>
         </IonToolbar>
         <IonToolbar>
-          <IonSearchbar placeholder="Search" onIonChange={(e) => setSearchQuizInput(e.detail.value)} value={searchQuizInput} />
+          <IonSearchbar placeholder="Recherche" onIonChange={(e) => setSearchQuizInput(e.detail.value)} value={searchQuizInput} />
         </IonToolbar>
       </IonHeader>
       <IonContent>

@@ -20,18 +20,20 @@ const SchoolClassesList = ({ showModalFormCreate, searchQuizInput }) => {
   if (loadingForSchoolClasses) return <Loading />;
   if (errorForSchoolClasses) return `Error! ${errorForSchoolClasses.message}`;
 
-
-  const renderSchoolClassesItems = dataForSchoolClasses.schoolClassesByCurrentUser.map(schoolClass => (
-    <Fragment key={schoolClass.id}>
-      <IonItem onClick={() => setShowSchoolClassModal({ schoolClassId: schoolClass.id, display: true })}>
-        <IonAvatar>
-          <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
-        </IonAvatar>
-        <IonLabel>{schoolClass.name}</IonLabel>
-      </IonItem>
-      <SchoolClassesFormUpdateModal showModal={showSchoolClassModal} setShowModal={setShowSchoolClassModal} schoolClass={schoolClass} />
-    </Fragment>
-  ));
+  const renderSchoolClassesItems = dataForSchoolClasses.schoolClassesByCurrentUser.map((schoolClass, i) => {
+   let color = (i % 2 === 0) ? 'D46EFF' : '8580E8';
+    return (
+      <Fragment key={schoolClass.id}>
+        <IonItem onClick={() => setShowSchoolClassModal({ schoolClassId: schoolClass.id, display: true })}>
+          <IonAvatar slot="start">
+            <img src={`https://eu.ui-avatars.com/api/?name=${schoolClass.name[0]}&background=${color}&color=fff`} />
+          </IonAvatar>
+          <IonLabel>{schoolClass.name}</IonLabel>
+        </IonItem>
+        <SchoolClassesFormUpdateModal showModal={showSchoolClassModal} setShowModal={setShowSchoolClassModal} schoolClass={schoolClass} />
+      </Fragment>
+    )
+  });
   return (
     <IonList>
       {renderSchoolClassesItems}
