@@ -15,3 +15,22 @@ export const getRandomColor = () => {
   }
   return c() + c() + c();
 }
+
+export const simpleDebouncePrisma = (fn) => {
+  let executing = false
+  let pendingExecution = null
+  return async (...args) => {
+    if (executing) {
+      // if there are 2 executions 50ms apart, ignore the last one
+      pendingExecution = args
+      return null
+    }
+    executing = true
+    await fn(...args).catch(e => console.error(e))
+    if (pendingExecution) {
+      await fn(...args).catch(e => console.error(e))
+      pendingExecution = null
+    }
+    executing = false
+  }
+}

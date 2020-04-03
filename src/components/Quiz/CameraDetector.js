@@ -5,8 +5,6 @@ import { CREATE_REPORT } from '../../utils/MutationApi';
 
 const ANSWERS = ['A', 'B', 'C', 'D'];
 const CameraDetector = ({ quiz, setMediaStream, students, schoolClassId, setAnswersByQuestion, showResultsByQuestion, answersByQuestion }) => {
-
-    console.log('force reload')
     const [createReport] = useMutation(CREATE_REPORT);
     const video = useRef('');
     const canvas = useRef('');

@@ -21,7 +21,7 @@ const NewQuizHeader = ({ quiz }) => {
         <IonButtons slot="start">
           <IonMenuButton></IonMenuButton>
         </IonButtons>
-        <IonItem className={'ion-text-center'}> Création d'un nouveau quiz</IonItem>
+        <IonItem className={'ion-text-center'} lines="none"> Création d'un nouveau quiz</IonItem>
         <IonButtons slot="end" className={quiz.id === '' ? 'ion-hide' : ''}>
           <IonButton icon-only onClick={() => setShowAlert1(true)}>
             <IonIcon icon={trash} slot="icon-only" color="primary" />

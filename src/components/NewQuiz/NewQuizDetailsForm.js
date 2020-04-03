@@ -1,16 +1,24 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import NewQuizAnswersForm from './NewQuizAnswersForm';
 import NewQuizQuestionForm from './NewQuizQuestionForm';
 import { useMutation } from '@apollo/react-hooks';
 import { UPSERT_QUESTION, UPSERT_ANSWER, UPDATE_ANSWER_IS_RIGHT_FIELD } from '../../utils/MutationApi';
 import NewQuizQuestionNumber from './NewQuizQuestionNumber';
 import NewQuizBtnExitQuiz from './NewQuizBtnExitQuiz';
 import { useDebounce } from 'use-debounce';
+import NewAnswersForm from './NewAnswersForm';
 
 const NewQuizDetailsForm = ({ quiz }) => {
   const [upsertQuestion, { data: dataForUpsertQuestion }] = useMutation(UPSERT_QUESTION);
-  const [upsetAnswer, { data: dataForUpsertAnswer }] = useMutation(UPSERT_ANSWER);
-  const [updateAnswerIsRightField] = useMutation(UPDATE_ANSWER_IS_RIGHT_FIELD);
+  const [upsetAnswer, { data: dataForUpsertAnswer }] = useMutation(UPSERT_ANSWER, {
+    onCompleted: (data) => {
+      let indexToUpdate = question.answers.findIndex(answer => answer.label === data.upsertAnswer.label)
+      let newQuestion = { ...question }
+      newQuestion.answers[indexToUpdate] = { ...newQuestion.answers[indexToUpdate], id: data.upsertAnswer.id };
+      setQuestion(newQuestion)
+    }
+  });
+  const [selectRightAnswer, setSelectRightAnswer] = useState(false)
+
   const defaultQuestionState = {
     number: 1,
     name: '',
@@ -26,9 +34,10 @@ const NewQuizDetailsForm = ({ quiz }) => {
 
   const [question, setQuestion] = useState(defaultQuestionState)
   const [debounceQuestion] = useDebounce(question, 500);
+  const [debounceAnswer] = useDebounce(question.answers, 500);
+
 
   const [lastAnswerIndexUpdate, setLastAnswerIndexUpdate] = useState(null)
-  // const [debounceLastAnswerIndexUpdate] = useDebounce(lastAnswerIndexUpdate, 500);
 
   const [questions, setQuestions] = useState([]);
 
@@ -37,7 +46,7 @@ const NewQuizDetailsForm = ({ quiz }) => {
       let questionId = (debounceQuestion.id === null) ? '' : debounceQuestion.id;
       upsertQuestion({ variables: { label: debounceQuestion.name, quizId: quiz.id, questionId: questionId } })
     }
-  }, [debounceQuestion])
+  }, [debounceQuestion.name])
 
   useEffect(() => {
     if (dataForUpsertQuestion !== undefined && question.id === null) {
@@ -64,6 +73,7 @@ const NewQuizDetailsForm = ({ quiz }) => {
   }, [nbCurrentQuestion])
 
 
+
   useEffect(() => {
     let questionAtNumber = questions.filter(({ number }) => number === nbCurrentQuestion)
     if (question.id !== null && questionAtNumber.length === 0) {
@@ -77,50 +87,55 @@ const NewQuizDetailsForm = ({ quiz }) => {
   }, [question])
 
   useEffect(() => {
-    if (lastAnswerIndexUpdate !== null && question.id !== null) {
-      let answersToUpdate = question.answers[lastAnswerIndexUpdate]
-      let answerId = (answersToUpdate.id === null) ? 'null' : answersToUpdate.id;
-      upsetAnswer({
-        variables: {
-          label: answersToUpdate.label,
-          isRight: answersToUpdate.isRight,
-          questionId: question.id,
-          answerId: answerId
-        }
-      })
-
-      let answerToUpdateRight = question.answers.filter(answer => {
-        return answer.id !== null && answer.id !== question.answers[lastAnswerIndexUpdate].id
-      })
-
-      if (answerToUpdateRight.length > 0) {
-        answerToUpdateRight.forEach(answer => {
-          updateAnswerIsRightField({
-            variables: {
-              isRight: false,
-              answerId: answer.id
-            }
-          })
+    console.log('fail')
+    if (debounceAnswer.find(answer => answer.label === '') === undefined && selectRightAnswer) {
+      debounceAnswer.forEach((answer, i) => {
+        let answerId = (answer.id === null) ? 'null' : answer.id;
+        upsetAnswer({
+          variables: {
+            label: answer.label,
+            isRight: answer.isRight,
+            questionId: question.id,
+            answerId: answerId
+          },
         })
-      }
+      })
     }
-  }, [lastAnswerIndexUpdate])
+    setSelectRightAnswer(false)
+  }, [debounceAnswer])
 
   useEffect(() => {
-    if (dataForUpsertAnswer !== undefined) {
-      let newQuestion = { ...question }
-      newQuestion.answers[lastAnswerIndexUpdate] = { ...newQuestion.answers[lastAnswerIndexUpdate], id: dataForUpsertAnswer.upsertAnswer.id };
-      setQuestion(newQuestion)
-      setLastAnswerIndexUpdate(null)
+    console.log('update')
+    if (debounceAnswer.find(answer => answer.id === null) === undefined &&
+      lastAnswerIndexUpdate !== null
+      && question.id !== null) {
+      upsetAnswer({
+        variables: {
+          label: debounceQuestion.answers[lastAnswerIndexUpdate].label,
+          isRight: debounceQuestion.answers[lastAnswerIndexUpdate].isRight,
+          questionId: question.id,
+          answerId: debounceQuestion.answers[lastAnswerIndexUpdate].id
+        },
+      })
     }
-  }, [dataForUpsertAnswer])
+    setLastAnswerIndexUpdate(null)
+  }, [lastAnswerIndexUpdate])
+
 
   return (
     <>
       <NewQuizQuestionNumber nbCurrentQuestion={nbCurrentQuestion} setNbCurrentQuestion={setNbCurrentQuestion} questions={questions} />
       <NewQuizQuestionForm question={question} setQuestion={setQuestion} />
-      <NewQuizAnswersForm question={question} setQuestion={setQuestion} setLastAnswerIndexUpdate={setLastAnswerIndexUpdate} />
-      <NewQuizBtnExitQuiz quiz={quiz} />
+      <NewAnswersForm
+        question={question}
+        setQuestion={setQuestion}
+        setLastAnswerIndexUpdate={setLastAnswerIndexUpdate}
+        selectRightAnswer={selectRightAnswer}
+        setSelectRightAnswer={setSelectRightAnswer}
+      />
+      <div>
+        <NewQuizBtnExitQuiz quiz={quiz} />
+      </div>
     </>
   )
 }

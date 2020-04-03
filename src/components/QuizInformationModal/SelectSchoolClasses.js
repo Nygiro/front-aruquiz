@@ -13,7 +13,7 @@ const SelectSchoolClasses = ({ setSelectedClassId }) => {
       <IonLabel>Mes classes</IonLabel>
       <IonSelect placeholder="Choisir" onIonChange={(e) => setSelectedClassId(e.target.value)}>
         {dataForSchoolClasses.schoolClassesByCurrentUser.map(({ id, name }) => (
-          <IonSelectOption key={name} value={id}>
+          <IonSelectOption key={id} value={id}>
             {name}
           </IonSelectOption>
         ))}
