@@ -127,15 +127,13 @@ const NewQuizDetailsForm = ({ quiz }) => {
       <NewQuizQuestionNumber nbCurrentQuestion={nbCurrentQuestion} setNbCurrentQuestion={setNbCurrentQuestion} questions={questions} />
       <NewQuizQuestionForm question={question} setQuestion={setQuestion} />
       <NewAnswersForm
+      quiz={quiz}
         question={question}
         setQuestion={setQuestion}
         setLastAnswerIndexUpdate={setLastAnswerIndexUpdate}
         selectRightAnswer={selectRightAnswer}
         setSelectRightAnswer={setSelectRightAnswer}
       />
-      <div>
-        <NewQuizBtnExitQuiz quiz={quiz} />
-      </div>
     </>
   )
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { IonGrid, IonRadioGroup, IonRow, IonCol, IonItem, IonLabel, IonRadio, IonInput, IonTextarea, IonButton, IonBackdrop, IonAlert } from '@ionic/react';
-const NewAnswersForm = ({ question, setQuestion, setLastAnswerIndexUpdate, selectRightAnswer, setSelectRightAnswer }) => {
+import NewQuizBtnExitQuiz from './NewQuizBtnExitQuiz';
+const NewAnswersForm = ({ quiz, question, setQuestion, setLastAnswerIndexUpdate, selectRightAnswer, setSelectRightAnswer }) => {
   const [rightIndexQuestion, setRightIndexQuestion] = useState(0)
   const [showAlert1, setShowAlert1] = useState(false);
 
@@ -74,9 +75,12 @@ const NewAnswersForm = ({ question, setQuestion, setLastAnswerIndexUpdate, selec
         </div>
       </div>
       {question.answers.find(answer => answer.label === '') === undefined &&
-        <IonButton className="select-answer" onClick={() => setSelectRightAnswer(true)}>
-          Sélectionner votre réponse
+        <div style={{textAlign: 'center', display: 'flex', flexWrap: 'wrap'}}>
+          <IonButton className="btn-for-new-quiz" onClick={() => setSelectRightAnswer(true)}>
+            Sélectionner votre réponse
           </IonButton>
+        <NewQuizBtnExitQuiz quiz={quiz} />
+        </div>
       }
       <IonAlert
         isOpen={showAlert1}

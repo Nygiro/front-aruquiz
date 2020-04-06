@@ -19,7 +19,14 @@ const NewQuizFormCreate = ({ setQuiz, quiz }) => {
         <IonLabel position="floating" color="primary">Veuillez renseigner le nom de votre quiz</IonLabel>
         <IonInput minlength={1} value={quiz.name} onIonChange={e => setQuiz({ ...quiz, name: e.target.value })} />
       </IonItem>
-      <IonButton expand="block" onClick={() => createQuiz({ variables: quiz })} >Créer le quiz</IonButton>
+      <div>
+        <IonButton
+          className={'btn-for-new-quiz'}
+          expand="block"
+          onClick={() => createQuiz({ variables: quiz })}>
+          Créer le quiz
+           </IonButton>
+      </div>
     </>
   )
 }

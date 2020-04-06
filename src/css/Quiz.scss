@@ -157,3 +157,21 @@
   // border: 5px solid #404668;
 }
 
+
+@media (min-width: 780px) {
+  div.answers-proposition {
+    flex-wrap: nowrap;
+    height: 39%;
+  }
+  div.question-label {
+    margin: 0;
+    margin-top: 2%;
+  }
+  div.CameraDetector {
+    height: 45%;
+  }
+  div.question-number {
+    margin-top: 1%;
+    margin-bottom: 1%;
+  }
+}
