@@ -28,6 +28,7 @@ const routes = {
           { title: 'Mes classes', path: '/schoolClasses', icon: contacts },
           { title: 'Créer un quiz', path: '/new', icon: create },
           { title: 'Rapport', path: '/report', icon: stats },
+          { title: 'Live', path: '/live-quiz', icon: stats },
           { title: 'Se déconnecter', path: '/logout', icon: logOut }
         ]
       }

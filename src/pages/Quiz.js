@@ -3,13 +3,14 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/react-hooks";
 import Loading from "../components/Utils/Loading";
 import { GET_QUIZ } from "../utils/QuizApi";
-import { ARUQUIZ_CURRENT_LIST_STUDENTS_FOR_QUIZ, ARUQUIZ_CURRENT_SCHOOL_CLASS_FOR_QUIZ } from "../utils/Constants";
+import { ARUQUIZ_CURRENT_LIST_STUDENTS_FOR_QUIZ, ARUQUIZ_CURRENT_SCHOOL_CLASS_FOR_QUIZ, ARUQUIZ_USER_TOKEN } from "../utils/Constants";
 import { GET_STUDENTS_BY_STUDENTS_ID } from "../utils/QueryApi";
 import { IonHeader, IonItem, IonToolbar, IonTextarea, IonRow, IonCol, IonContent, IonPage, IonButtons, IonMenuButton, IonButton, IonIcon, IonLabel, IonInput, IonGrid } from '@ionic/react';
 import QuizHeader from "../components/Quiz/QuizHeader";
 import QuizCurrentQuestion from "../components/Quiz/QuizCurrentQuestion";
 import QuizFinalResults from "../components/Quiz/QuizFinalResults";
 import './../css/Quiz.scss';
+import { databaseRef } from '../firebase'
 
 const Quiz = () => {
   const { quizId } = useParams();
@@ -22,7 +23,7 @@ const Quiz = () => {
   const [showFinalResults, setShowFinalResults] = useState(false);
 
   const [allResultsByQuestion, setAllResultsByQuestion] = useState([]);
-  const [unmountCamera, setUnmountCamera] = useState(false);
+  const usersRef = databaseRef.child(`users/${localStorage.getItem(ARUQUIZ_USER_TOKEN).replace(/[^a-zA-Z ]/g, "")}`)
 
   const { loading, error, data: dataForQuiz, loading: loadingForDataForQuiz } = useQuery(GET_QUIZ, {
     variables: { quizId },
@@ -41,10 +42,12 @@ const Quiz = () => {
 
 
   useEffect(() => {
-    console.log(answersByQuestion);
     localStorage.setItem('answersByQuestion', JSON.stringify(answersByQuestion))
     if (students !== null && answersByQuestion.length === students.length) {
       setOpenCamera(false);
+      usersRef.child('current').update({
+        'displayAnswer': true
+      });
     }
   }, [answersByQuestion])
 
@@ -72,19 +75,39 @@ const Quiz = () => {
       setShowFinalResults(true)
     }
     localStorage.setItem('answersByQuestion', JSON.stringify([]))
+    if (dataForQuiz !== undefined && dataForQuiz.quiz.questions.length !== nbCurrentQuestion) {
+      console.log(nbCurrentQuestion)
+      usersRef.child('current').update({
+        'questionNumber': nbCurrentQuestion + 1,
+        'answers': dataForQuiz.quiz.questions[nbCurrentQuestion].answers,
+        'questionName': dataForQuiz.quiz.questions[nbCurrentQuestion].label,
+        'displayAnswer': false,
+      });
+    }
   }, [nbCurrentQuestion])
 
-
-
-
+  useEffect(() => {
+    if (students.find(student => student === null) === undefined && dataForQuiz !== undefined) {
+      usersRef.child('current').set({
+        'quizName': dataForQuiz.quiz.name,
+        'nbQuestion': dataForQuiz.quiz.questions.length,
+        'questionName': dataForQuiz.quiz.questions[nbCurrentQuestion].label,
+        'questionNumber': nbCurrentQuestion + 1,
+        'answers': dataForQuiz.quiz.questions[nbCurrentQuestion].answers,
+        'students': students,
+        'displayAnswer': false
+      });
+    }
+  }, [dataForQuiz])
   if (loadingForDataForQuiz) return <Loading />;
   // if (error) return `Error! ${error.message}`;
+
 
 
   return (
     <>
       <IonPage id="quizzes-page">
-        <QuizHeader  quiz={dataForQuiz.quiz} />
+        <QuizHeader quiz={dataForQuiz.quiz} />
         <IonContent>
           {
             showFinalResults
