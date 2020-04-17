@@ -12,7 +12,7 @@ import {
   IonToolbar,
   IonToggle
 } from '@ionic/react';
-import { list, contacts, create, stats, informationCircle, logIn, logOut, map, person, personAdd } from 'ionicons/icons';
+import { list, contacts, create, stats, informationCircle, logIn, logOut, map, person, personAdd,wifi } from 'ionicons/icons';
 import React, { useState } from 'react';
 import { GET_IS_DARK_MODE, GET_IS_LOGGED_IN } from './../utils/Store';
 import { useApolloClient, useQuery } from "@apollo/react-hooks";
@@ -28,7 +28,7 @@ const routes = {
           { title: 'Mes classes', path: '/schoolClasses', icon: contacts },
           { title: 'Créer un quiz', path: '/new', icon: create },
           { title: 'Rapport', path: '/report', icon: stats },
-          { title: 'Live', path: '/live-quiz', icon: stats },
+          { title: 'Live', path: '/live-quiz', icon: wifi },
           { title: 'Se déconnecter', path: '/logout', icon: logOut }
         ]
       }

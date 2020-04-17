@@ -49,6 +49,9 @@ const Quiz = () => {
         'displayAnswer': true
       });
     }
+    usersRef.child('current').update({
+      'answersByQuestion': answersByQuestion
+    });
   }, [answersByQuestion])
 
   useEffect(() => {
@@ -76,12 +79,12 @@ const Quiz = () => {
     }
     localStorage.setItem('answersByQuestion', JSON.stringify([]))
     if (dataForQuiz !== undefined && dataForQuiz.quiz.questions.length !== nbCurrentQuestion) {
-      console.log(nbCurrentQuestion)
       usersRef.child('current').update({
         'questionNumber': nbCurrentQuestion + 1,
         'answers': dataForQuiz.quiz.questions[nbCurrentQuestion].answers,
         'questionName': dataForQuiz.quiz.questions[nbCurrentQuestion].label,
         'displayAnswer': false,
+        'answersByQuestion': [{id: '', markerId: '', name: ''}]
       });
     }
   }, [nbCurrentQuestion])
@@ -95,7 +98,8 @@ const Quiz = () => {
         'questionNumber': nbCurrentQuestion + 1,
         'answers': dataForQuiz.quiz.questions[nbCurrentQuestion].answers,
         'students': students,
-        'displayAnswer': false
+        'displayAnswer': false,
+        'answersByQuestion': [{id: '', markerId: '', name: ''}]
       });
     }
   }, [dataForQuiz])

@@ -162,6 +162,9 @@
   div.answers-proposition {
     flex-wrap: nowrap;
     height: 39%;
+    .answer {
+      height: 60%;
+    }
   }
   div.answer-live {
     flex-wrap: wrap;
@@ -179,4 +182,8 @@
     margin-top: 1%;
     margin-bottom: 1%;
   }
+}
+
+.left-live {
+  width: 75%;
 }
