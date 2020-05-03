@@ -38,7 +38,6 @@ const client = new ApolloClient({
     }
 })
 
-console.log('clear')
 // SHARE PROPS
 client.writeData({
     data: {

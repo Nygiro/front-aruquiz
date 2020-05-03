@@ -87,7 +87,6 @@ const CameraDetector = ({ quiz, setMediaStream, students, schoolClassId, setAnsw
     };
 
     const determinateResponse = (video) => {
-        console.log(localStorage.getItem('nbCurrentQuestion'))
         markers.forEach(marker => {
             let answersByQuestion = JSON.parse(localStorage.getItem('answersByQuestion'));
             if (localStorage.getItem('openCamera') === 'true') {
