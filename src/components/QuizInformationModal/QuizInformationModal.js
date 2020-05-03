@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from 'react';
 import {
   IonModal, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonButton,
-  IonList, IonItem, IonLabel, IonBackButton
+  IonList, IonBackButton
 } from '@ionic/react';
 import { useQuery } from '@apollo/react-hooks';
 import Loading from '../Utils/Loading';

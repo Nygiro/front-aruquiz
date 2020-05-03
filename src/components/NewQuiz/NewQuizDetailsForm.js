@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import NewQuizQuestionForm from './NewQuizQuestionForm';
 import { useMutation } from '@apollo/react-hooks';
-import { UPSERT_QUESTION, UPSERT_ANSWER, UPDATE_ANSWER_IS_RIGHT_FIELD } from '../../utils/MutationApi';
+import { UPSERT_QUESTION, UPSERT_ANSWER } from '../../utils/MutationApi';
 import NewQuizQuestionNumber from './NewQuizQuestionNumber';
-import NewQuizBtnExitQuiz from './NewQuizBtnExitQuiz';
 import { useDebounce } from 'use-debounce';
 import NewAnswersForm from './NewAnswersForm';
 
@@ -127,7 +126,7 @@ const NewQuizDetailsForm = ({ quiz }) => {
       <NewQuizQuestionNumber nbCurrentQuestion={nbCurrentQuestion} setNbCurrentQuestion={setNbCurrentQuestion} questions={questions} />
       <NewQuizQuestionForm question={question} setQuestion={setQuestion} />
       <NewAnswersForm
-      quiz={quiz}
+        quiz={quiz}
         question={question}
         setQuestion={setQuestion}
         setLastAnswerIndexUpdate={setLastAnswerIndexUpdate}

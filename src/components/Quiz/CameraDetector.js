@@ -11,29 +11,31 @@ const CameraDetector = ({ quiz, setMediaStream, students, schoolClassId, setAnsw
     let markers = [];
     let context, imageData;
     useEffect(() => {
-        navigator.mediaDevices.getUserMedia = (navigator.mediaDevices.getUserMedia ||
-            navigator.webkitGetUserMedia ||
-            navigator.mozGetUserMedia ||
-            navigator.msGetUserMedia);
-        navigator.mediaDevices
-            .getUserMedia({ video: { facingMode: 'environment' } })
-            .then(stream => {
-                if ("srcObject" in video.current) {
-                    video.current.srcObject = stream;
-                    setMediaStream(video.current.srcObject)
-                } else {
-                    video.current.src = window.URL.createObjectURL(stream);
-                }
+        if (video.current !== null) {
+            navigator.mediaDevices.getUserMedia = (navigator.mediaDevices.getUserMedia ||
+                navigator.webkitGetUserMedia ||
+                navigator.mozGetUserMedia ||
+                navigator.msGetUserMedia);
+            navigator.mediaDevices
+                .getUserMedia({ video: { facingMode: 'environment' } })
+                .then(stream => {
+                    if ("srcObject" in video.current) {
+                        video.current.srcObject = stream;
+                        setMediaStream(video.current.srcObject)
+                    } else {
+                        video.current.src = window.URL.createObjectURL(stream);
+                    }
 
-            })
-            .catch(function (err) {
-                console.log(err.name + ": " + err.message);
-            }
-            );
-        requestAnimationFrame(() => {
-            tick(video.current, canvas.current);
-        });
-    }, []);
+                })
+                .catch(function (err) {
+                    console.log(err.name + ": " + err.message);
+                }
+                );
+            requestAnimationFrame(() => {
+                tick(video.current, canvas.current);
+            });
+        }
+    }, [video.current]);
 
     const tick = (video, canvas) => {
         context = canvas.getContext("2d");

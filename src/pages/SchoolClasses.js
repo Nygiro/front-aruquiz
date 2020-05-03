@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { IonHeader, IonModal, IonToolbar, IonSearchbar, IonTitle, IonSegment, IonSegmentButton, IonContent, IonPage, IonButtons, IonMenuButton, IonButton, IonIcon, IonLabel } from '@ionic/react';
+import { IonHeader, IonModal, IonToolbar, IonSearchbar, IonTitle, IonContent, IonPage, IonButtons, IonMenuButton, IonButton, IonIcon } from '@ionic/react';
 import SchoolClassesList from '../components/SchoolClasses/SchoolClassesList';
-import { useQuery } from '@apollo/react-hooks';
 import { addCircle } from 'ionicons/icons';
 import SchoolClassesFormCreateModal from '../components/SchoolClasses/SchoolClassesFormCreateModal';
 import './../css/SchoolClasses.scss';

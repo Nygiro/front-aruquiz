@@ -1,8 +1,5 @@
 import React from 'react';
-import { IonItem, IonList, IonLabel, IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent } from '@ionic/react'
-
 const QuizQuestion = ({ quiz, nbCurrentQuestion, displayAnswer }) => {
-  console.log(displayAnswer);
   const propositionIndex = ['A', 'B', 'C', 'D'];
   const renderAnswersPropositions = quiz.questions[nbCurrentQuestion].answers.map(({ id, label, isRight }, index) => {
     return (

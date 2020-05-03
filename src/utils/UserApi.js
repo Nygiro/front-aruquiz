@@ -38,3 +38,15 @@ export const OWN_SCHOOLCLASSES = gql`
     }
   }}
 `;
+
+export const GET_STUDENTS_BY_TEACHER = gql`
+  query {
+    currentUser {
+      schoolClasses {
+        students {
+          id,
+          name
+        }
+      }
+  }}
+`;

@@ -1,7 +1,7 @@
 import React from 'react';
 import QuizQuestionNumber from './QuizQuestionNumber';
-import { IonItem,IonBadge, IonLabel, IonList, IonListHeader, IonNote } from '@ionic/react'
-const QuizResults = ({ quiz, nbCurrentQuestion, answersByQuestion , students, setNbCurrentQuestion, showResultsByQuestion}) => {
+import { IonItem, IonLabel, IonList, IonListHeader, IonNote } from '@ionic/react'
+const QuizResults = ({ quiz, nbCurrentQuestion, answersByQuestion, students, setNbCurrentQuestion, showResultsByQuestion }) => {
   const renderAnswerByQuestion = answersByQuestion.map(({ markerId, studentName, isRight, answerLabel }) => {
     return (
       <IonItem key={markerId} color={isRight ? 'success' : 'danger'}>
@@ -13,14 +13,13 @@ const QuizResults = ({ quiz, nbCurrentQuestion, answersByQuestion , students, se
   return (
     <>
       <QuizQuestionNumber
-       quiz={quiz}
-        nbCurrentQuestion={nbCurrentQuestion} 
-        answersByQuestion={answersByQuestion} 
-        students={students} 
-        setNbCurrentQuestion={setNbCurrentQuestion} 
+        quiz={quiz}
+        nbCurrentQuestion={nbCurrentQuestion}
+        answersByQuestion={answersByQuestion}
+        students={students}
+        setNbCurrentQuestion={setNbCurrentQuestion}
         showResultsByQuestion={showResultsByQuestion}
-        
-        />
+      />
       <IonListHeader>
         Résultats :
       </IonListHeader>

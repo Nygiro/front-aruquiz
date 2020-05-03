@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { IonModal, IonAvatar, IonList, IonItem, IonLabel, IonContent, IonListHeader, IonHeader, IonTitle, IonFooter, IonToolbar, IonButtons, IonButton } from '@ionic/react';
+import {IonAvatar, IonList, IonItem, IonLabel} from '@ionic/react';
 import { useQuery } from '@apollo/react-hooks';
 import { GET_SCHOOL_CLASSES_BY_CURRENT_USER } from '../../utils/QueryApi';
 import Loading from '../Utils/Loading';

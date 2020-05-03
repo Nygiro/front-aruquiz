@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { IonSelect, IonItem, IonSelectOption, IonTextarea, IonRow, IonCol, IonContent, IonPage, IonButtons, IonMenuButton, IonButton, IonIcon, IonLabel, IonInput, IonGrid } from '@ionic/react';
+import { IonItem, IonButton, IonLabel, IonInput } from '@ionic/react';
 import SelectSchoolSubjects from './SelectSchoolSubjects';
 import { CREATE_QUIZ } from '../../utils/MutationApi';
 import { useMutation } from '@apollo/react-hooks';

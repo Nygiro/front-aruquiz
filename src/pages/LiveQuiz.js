@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { databaseRef } from '../firebase'
 import { ARUQUIZ_USER_TOKEN } from '../utils/Constants';
-import QuizHeader from '../components/Quiz/QuizHeader';
-import { IonPage, IonContent, IonHeader, IonToolbar, IonButtons, IonButton, IonMenuButton, IonItem, IonList, IonLabel, IonNote, IonIcon, IonListHeader, IonModal, IonTitle, IonToggle } from '@ionic/react'
+import { IonPage, IonContent, IonHeader, IonToolbar, IonButtons, IonButton, IonMenuButton, IonItem, IonList, IonLabel, IonIcon, IonListHeader, IonModal, IonTitle, IonToggle } from '@ionic/react'
 import { options, checkmarkCircle } from 'ionicons/icons';
 
 
@@ -49,15 +48,7 @@ const LiveQuiz = () => {
       </IonItem>
     )
   })
-
-
-  // 'quizName': dataForQuiz.quiz.name,
-  // 'nbQuestion': dataForQuiz.quiz.questions.length,
-  // 'questionName': dataForQuiz.quiz.questions[nbCurrentQuestion].label,
-  // 'questionNumber': nbCurrentQuestion + 1,
-  // 'answers':  dataForQuiz.quiz.questions[nbCurrentQuestion].answers,
-  // 'students': students
-
+  
   useEffect(() => {
     usersRef.on('child_changed', function (data) {
       if (data.val().questionNumber !== undefined) {

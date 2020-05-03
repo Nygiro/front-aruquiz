@@ -5,7 +5,7 @@ import Loading from "../components/Utils/Loading";
 import { GET_QUIZ } from "../utils/QuizApi";
 import { ARUQUIZ_CURRENT_LIST_STUDENTS_FOR_QUIZ, ARUQUIZ_CURRENT_SCHOOL_CLASS_FOR_QUIZ, ARUQUIZ_USER_TOKEN } from "../utils/Constants";
 import { GET_STUDENTS_BY_STUDENTS_ID } from "../utils/QueryApi";
-import { IonHeader, IonItem, IonToolbar, IonTextarea, IonRow, IonCol, IonContent, IonPage, IonButtons, IonMenuButton, IonButton, IonIcon, IonLabel, IonInput, IonGrid } from '@ionic/react';
+import { IonContent, IonPage } from '@ionic/react';
 import QuizHeader from "../components/Quiz/QuizHeader";
 import QuizCurrentQuestion from "../components/Quiz/QuizCurrentQuestion";
 import QuizFinalResults from "../components/Quiz/QuizFinalResults";
@@ -24,7 +24,6 @@ const Quiz = () => {
 
   const [allResultsByQuestion, setAllResultsByQuestion] = useState([]);
   const usersRef = databaseRef.child(`users/${localStorage.getItem(ARUQUIZ_USER_TOKEN).replace(/[^a-zA-Z ]/g, "")}`)
-
   const { loading, error, data: dataForQuiz, loading: loadingForDataForQuiz } = useQuery(GET_QUIZ, {
     variables: { quizId },
   });
@@ -84,7 +83,7 @@ const Quiz = () => {
         'answers': dataForQuiz.quiz.questions[nbCurrentQuestion].answers,
         'questionName': dataForQuiz.quiz.questions[nbCurrentQuestion].label,
         'displayAnswer': false,
-        'answersByQuestion': [{id: '', markerId: '', name: ''}]
+        'answersByQuestion': [{ id: '', markerId: '', name: '' }]
       });
     }
   }, [nbCurrentQuestion])
@@ -99,15 +98,12 @@ const Quiz = () => {
         'answers': dataForQuiz.quiz.questions[nbCurrentQuestion].answers,
         'students': students,
         'displayAnswer': false,
-        'answersByQuestion': [{id: '', markerId: '', name: ''}]
+        'answersByQuestion': [{ id: '', markerId: '', name: '' }]
       });
     }
   }, [dataForQuiz])
   if (loadingForDataForQuiz) return <Loading />;
-  // if (error) return `Error! ${error.message}`;
-
-
-
+  
   return (
     <>
       <IonPage id="quizzes-page">

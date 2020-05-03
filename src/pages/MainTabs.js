@@ -8,6 +8,7 @@ import SchoolClasses from './SchoolClasses';
 import Quiz from './Quiz';
 import NewQuiz from './NewQuiz';
 import LiveQuiz from './LiveQuiz';
+import Report from './Report';
 
 
 const MainTabs = () => {
@@ -20,6 +21,7 @@ const MainTabs = () => {
         <Route path="/new" component={NewQuiz} exact />
         <Route path="/quizzes/:quizId" component={Quiz} exact />
         <Route path="/live-quiz" component={LiveQuiz} exact />
+        <Route path="/report" component={Report} exact />
 
       </IonRouterOutlet>
       <IonTabBar slot="bottom">

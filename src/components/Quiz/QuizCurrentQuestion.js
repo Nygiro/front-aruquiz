@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { IonHeader, IonItem, IonToolbar, IonTextarea, IonRow, IonCol, IonContent, IonPage, IonButtons, IonMenuButton, IonButton, IonIcon, IonLabel, IonInput, IonGrid } from '@ionic/react';
 import QuizDetails from "./QuizDetails";
 import QuizResults from "./QuizResults";
 import { ARUQUIZ_CURRENT_SCHOOL_CLASS_FOR_QUIZ } from "../../utils/Constants";

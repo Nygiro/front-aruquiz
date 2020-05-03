@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { IonItem, IonLabel, IonTextarea } from '@ionic/react';
 const NewQuizQuestionForm = ({ question, setQuestion }) => {
   return (

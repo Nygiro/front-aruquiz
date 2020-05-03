@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { IonInput, IonList, IonText, IonRow, IonCol, IonItem, IonLabel, IonContent, IonListHeader, IonHeader, IonTitle, IonFooter, IonToolbar, IonButtons, IonButton } from '@ionic/react';
+import { IonInput, IonList, IonText, IonRow, IonCol, IonItem, IonLabel, IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonButton } from '@ionic/react';
 import { CREATE_SCHOOL_CLASS, CREATE_STUDENT, UPDATE_STUDENT, DELETE_STUDENT, DELETE_SCHOOL_CLASS } from '../../utils/MutationApi';
 import { useMutation } from '@apollo/react-hooks';
 import { empty } from 'apollo-boost';

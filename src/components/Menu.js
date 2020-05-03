@@ -13,10 +13,8 @@ import {
   IonToggle
 } from '@ionic/react';
 import { list, contacts, create, stats, informationCircle, logIn, logOut, map, person, personAdd,wifi } from 'ionicons/icons';
-import React, { useState } from 'react';
-import { GET_IS_DARK_MODE, GET_IS_LOGGED_IN } from './../utils/Store';
+import React from 'react';
 import { useApolloClient, useQuery } from "@apollo/react-hooks";
-import { useHistory } from "react-router-dom";
 
 const routes = {
   connectedPages:

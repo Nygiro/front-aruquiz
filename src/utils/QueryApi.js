@@ -37,4 +37,58 @@ export const GET_STUDENTS_BY_STUDENTS_ID = gql`
 `
 
 
+export const GET_STUDENTS_BY_TEACHER = gql`
+query studentsByTeacher($userId: [ID!]!) {
+  user(userId: $userId) {
+    schoolClasses {
+      students {
+        id,
+        name
+      }
+    }
+  }
+}
+`
+
+export const GET_REPORT_BY_STUDENT = gql`
+query reports($studentId: ID!) {
+  reports(studentId: $studentId) {
+    quiz {
+      id
+      name
+    }
+    question {
+      id
+      label
+    }
+    answer {
+      id
+      label
+      isRight
+    }
+  }
+}
+`
+
+export const GET_REPORT_BY_STUDEN_BY_QUIZ = gql`
+query reportsByQuiz($studentId: ID!, $quizId: ID!) {
+  reportsByQuiz(studentId: $studentId, quizId: $quizId) {
+    quiz {
+      id
+      name
+    }
+    question {
+      id
+      label
+    }
+    answer {
+      id
+      label
+      isRight
+    }
+  }
+}
+`
+
+
 

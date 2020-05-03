@@ -1,5 +1,4 @@
 import React from 'react';
-import { IonGrid, IonRow, IonCol } from '@ionic/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowCircleLeft, faArrowCircleRight } from '@fortawesome/free-solid-svg-icons'
 

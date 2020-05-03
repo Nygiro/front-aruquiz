@@ -3,7 +3,7 @@ import { IonHeader, IonToolbar, IonButtons, IonMenuButton, IonButton, IonItem, I
 import { trash } from 'ionicons/icons';
 import { useMutation } from '@apollo/react-hooks';
 import { DELETE_QUIZ } from '../../utils/MutationApi';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const NewQuizHeader = ({ quiz }) => {
   const [showAlert1, setShowAlert1] = useState(false);

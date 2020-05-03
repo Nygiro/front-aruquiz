@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { IonHeader, IonBackButton, IonModal, IonToolbar, IonSearchbar, IonTitle, IonSegment, IonSegmentButton, IonContent, IonPage, IonButtons, IonMenuButton, IonListHeader, IonButton, IonIcon, IonDatetime, IonSelectOption, IonList, IonItem, IonLabel, IonSelect, IonPopover, IonAvatar } from '@ionic/react';
+import { IonListHeader, IonList, IonItem, IonLabel, IonAvatar } from '@ionic/react';
 import QuizInformationModal from '../QuizInformationModal/QuizInformationModal';
 
 const QuizzesList = ({ quizzesList, hide }) => {
@@ -15,20 +15,20 @@ const QuizzesList = ({ quizzesList, hide }) => {
     );
   }
 
-  const renderQuizzesListItems = quizzesList.map(({ id, name }, i) =>  
-  {
+  const renderQuizzesListItems = quizzesList.map(({ id, name }, i) => {
     let color = (i % 2 === 0) ? 'D46EFF' : '8580E8';
     return (
-    <Fragment key={id}>
-      <IonItem onClick={() => setShowQuizModal({ quizId: id, display: true })}>
-        <IonAvatar slot="start">
-          <img src={`https://eu.ui-avatars.com/api/?name=${name[0]}&background=${color}&color=fff`} />
-        </IonAvatar>
-        <IonLabel>{name}</IonLabel>
-      </IonItem>
-      <QuizInformationModal showModal={showQuizModal} setShowModal={setShowQuizModal} quizId={id} />
-    </Fragment>
-  )});
+      <Fragment key={id}>
+        <IonItem onClick={() => setShowQuizModal({ quizId: id, display: true })}>
+          <IonAvatar slot="start">
+            <img src={`https://eu.ui-avatars.com/api/?name=${name[0]}&background=${color}&color=fff`} />
+          </IonAvatar>
+          <IonLabel>{name}</IonLabel>
+        </IonItem>
+        <QuizInformationModal showModal={showQuizModal} setShowModal={setShowQuizModal} quizId={id} />
+      </Fragment>
+    )
+  });
 
   return (
     <IonList style={hide ? { display: 'none' } : {}}>

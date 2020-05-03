@@ -9,8 +9,8 @@ const QuizQuestionNumber = ({ quiz, nbCurrentQuestion, answersByQuestion, studen
               Résultats
             </p>
           ) : (
-            <p></p>
-          )
+              <p></p>
+            )
           }
           <p>Question {nbCurrentQuestion + 1}/{quiz.questions.length}</p>
           <p className={'next-question'} onClick={() => setNbCurrentQuestion(nbCurrentQuestion + 1)}>
