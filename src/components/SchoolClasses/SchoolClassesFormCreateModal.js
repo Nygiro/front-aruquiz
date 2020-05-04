@@ -130,11 +130,15 @@ const SchoolClassesFormCreateModal = ({ setShowModal }) => {
           <IonCol>
             {(className !== null && dataForSchoolClass !== undefined) ? (
               <>
-                <IonButton expand="block" onClick={() => setStudents([...students, { id: '', name: "" }])} >Ajouter un élève</IonButton>
-                <IonButton expand="block" onClick={() => handleDeleteSchoolClass()} >Supprimer la classe</IonButton>
+                <div class="btn-create-student">
+                  <IonButton expand="block" onClick={() => setStudents([...students, { id: '', name: "" }])} >Ajouter un élève</IonButton>
+                  <IonButton expand="block" onClick={() => handleDeleteSchoolClass()} >Supprimer la classe</IonButton>
+                </div>
               </>
             ) : (
-                <IonButton disabled={className === null} expand="block" onClick={() => createSchoolClass({ variables: { name: className } })} >Créer la classe</IonButton>
+                <div class="btn-class">
+                  <IonButton disabled={className === null} expand="block" onClick={() => createSchoolClass({ variables: { name: className } })} >Créer la classe</IonButton>
+                </div>
               )
             }
           </IonCol>

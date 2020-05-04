@@ -16,7 +16,7 @@
 }
 
 .question-number-form-create {
-  height: 5%;
+  height: 10%;
   align-items: center;
     .svg-inline--fa.fa-w-16 {
       height: 25px;
@@ -116,7 +116,7 @@
 .backdrop-answer-form {
   position: absolute;
   z-index: 100000;
-  height: 84.37%;
+  height: 77%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.4);
 }
@@ -124,12 +124,14 @@
 ion-content { 
   --height: 100vh;
 }
+ion-item {
+  padding-top: 5px;
+}
 
 .btn-for-new-quiz {
   width: 300px;
   margin: 0 auto;
   margin-top: 5%;
-  background: #117EEB;
   border-radius: 7px;
   text-transform: none;
 }

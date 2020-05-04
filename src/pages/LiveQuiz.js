@@ -27,14 +27,11 @@ const LiveQuiz = () => {
     );
   })
 
-
-  console.log(answersByQuestion)
   const renderStudents = students.map(({ id, name, markerId }) => {
-    console.log(answersByQuestion.find(answer => answer.markerId == markerId))
     let answer = answersByQuestion.find(answer => answer.markerId == markerId);
     return (
       <IonItem key={id}>
-        <IonLabel className="white">{name}</IonLabel>
+        <IonLabel>{name}</IonLabel>
         {answer !== undefined ? (
           <IonIcon color={displayAnswerOption ?
             answer.isRight ? 'success' : 'danger' :
@@ -48,7 +45,7 @@ const LiveQuiz = () => {
       </IonItem>
     )
   })
-  
+
   useEffect(() => {
     usersRef.on('child_changed', function (data) {
       if (data.val().questionNumber !== undefined) {
@@ -73,7 +70,6 @@ const LiveQuiz = () => {
         setStudents(data.val().students);
       }
       if (data.val().answersByQuestion !== undefined) {
-        console.log('updatte to ', data.val().answersByQuestion)
         setAnswersByQuestion(data.val().answersByQuestion);
       }
     })

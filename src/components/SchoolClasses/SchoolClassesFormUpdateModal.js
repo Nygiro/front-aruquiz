@@ -136,8 +136,10 @@ const SchoolClassesFormUpdateModal = ({ showModal, setShowModal, schoolClass }) 
         </IonList>
         <IonRow>
           <IonCol>
-            <IonButton expand="block" onClick={() => setStudents([...students, { id: '', name: '', markerId: '' }])} >Ajouter un élève</IonButton>
-            <IonButton expand="block" onClick={() => handleDeleteSchoolClass()} >Supprimer la classe</IonButton>
+            <div class="btn-create-student">
+              <IonButton expand="block" onClick={() => setStudents([...students, { id: '', name: '', markerId: '' }])} >Ajouter un élève</IonButton>
+              <IonButton expand="block" onClick={() => handleDeleteSchoolClass()} >Supprimer la classe</IonButton>
+            </div>
           </IonCol>
         </IonRow>
       </IonContent>

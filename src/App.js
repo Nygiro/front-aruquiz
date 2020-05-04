@@ -14,7 +14,7 @@ import {GET_IS_DARK_MODE } from './utils/Store';
 const App = () => {
   const { data: dataForIsDarkMode } = useQuery(GET_IS_DARK_MODE);
   return (
-      <IonApp className={`${dataForIsDarkMode.darkMode ? 'dark-theme' : ''}`}>
+      <IonApp className={'aruquiz-theme'}>
         <Home/>
       </IonApp>
   )

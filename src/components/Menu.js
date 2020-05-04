@@ -10,9 +10,9 @@ import {
   IonMenuToggle,
   IonTitle,
   IonToolbar,
-  IonToggle
+  IonAvatar
 } from '@ionic/react';
-import { list, contacts, create, stats, informationCircle, logIn, logOut, map, person, personAdd,wifi } from 'ionicons/icons';
+import { list, contacts, create, stats, informationCircle, logIn, logOut, map, person, personAdd, wifi } from 'ionicons/icons';
 import React from 'react';
 import { useApolloClient, useQuery } from "@apollo/react-hooks";
 
@@ -20,7 +20,7 @@ const routes = {
   connectedPages:
     [
       {
-        titleList: 'Navigation',
+        titleList: '',
         links: [
           { title: 'Quiz', path: '/quizzes', icon: list },
           { title: 'Mes classes', path: '/schoolClasses', icon: contacts },
@@ -59,7 +59,7 @@ const Menu = ({ isLoggedIn }) => {
       {page.links.map(p => {
         return (
           <IonMenuToggle key={p.title} auto-hide="false">
-            <IonItem button routerLink={p.path} routerDirection="none">
+            <IonItem button routerLink={p.path} routerDirection="none" class="menu-item">
               <IonIcon slot="start" icon={p.icon} />
               <IonLabel>{p.title}</IonLabel>
             </IonItem>
@@ -77,6 +77,10 @@ const Menu = ({ isLoggedIn }) => {
         </IonToolbar>
       </IonHeader>
       <IonContent class="outer-content">
+        <div class="avatar">
+            <img src={`https://eu.ui-avatars.com/api/?name=f&background=D46EFF&color=fff`} />
+            <p>Florian</p>
+        </div>
         {renderMenuListItems}
       </IonContent>
     </IonMenu>

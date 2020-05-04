@@ -49,7 +49,9 @@ const QuizInformationModal = ({ showModal, setShowModal, quizId }) => {
           <SelectSchoolClasses setSelectedClassId={setSelectedClassId} />
           <SelectStudents selectedClassId={selectedClassId} setSelectedStudentsId={setSelectedStudentsId} />
         </IonList>
-        <IonButton expand="block" onClick={() => handleStartQuiz(dataForQuiz.quiz.id)}>Start quiz</IonButton>
+        <div class="btn-start-quiz">
+        <IonButton expand="block" onClick={() => handleStartQuiz(dataForQuiz.quiz.id)}>Démarrer le quiz</IonButton>
+        </div>
       </IonContent>
     </IonModal >
   );
