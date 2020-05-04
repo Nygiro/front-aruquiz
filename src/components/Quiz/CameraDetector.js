@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useLayoutEffect } from 'react';
 import { AR } from "js-aruco";
 import { useMutation } from '@apollo/react-hooks';
 import { CREATE_REPORT } from '../../utils/MutationApi';
@@ -10,8 +10,8 @@ const CameraDetector = ({ quiz, setMediaStream, students, schoolClassId, setAnsw
     const canvas = useRef('');
     let markers = [];
     let context, imageData;
-    useEffect(() => {
-        if (video.current !== null) {
+    useLayoutEffect(() => {
+        if (video.current) {
             navigator.mediaDevices.getUserMedia = (navigator.mediaDevices.getUserMedia ||
                 navigator.webkitGetUserMedia ||
                 navigator.mozGetUserMedia ||
