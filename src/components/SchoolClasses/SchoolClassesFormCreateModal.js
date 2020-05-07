@@ -73,7 +73,7 @@ const SchoolClassesFormCreateModal = ({ setShowModal }) => {
       <Fragment key={i}>
         <IonRow>
           <IonCol size="2">
-            <IonItem class="ion-text-center">
+            <IonItem className="ion-text-center">
               <IonLabel position="floating" color="primary">N°</IonLabel>
               <IonInput value={markerId} type="number" min={1} max={50} onIonChange={e => handleSetStudentMarkerId(e.target.value, id, i)}></IonInput>
             </IonItem>
@@ -130,13 +130,13 @@ const SchoolClassesFormCreateModal = ({ setShowModal }) => {
           <IonCol>
             {(className !== null && dataForSchoolClass !== undefined) ? (
               <>
-                <div class="btn-create-student">
+                <div className="btn-create-student">
                   <IonButton expand="block" onClick={() => setStudents([...students, { id: '', name: "" }])} >Ajouter un élève</IonButton>
                   <IonButton expand="block" onClick={() => handleDeleteSchoolClass()} >Supprimer la classe</IonButton>
                 </div>
               </>
             ) : (
-                <div class="btn-class">
+                <div className="btn-class">
                   <IonButton disabled={className === null} expand="block" onClick={() => createSchoolClass({ variables: { name: className } })} >Créer la classe</IonButton>
                 </div>
               )

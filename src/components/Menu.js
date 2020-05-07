@@ -59,7 +59,7 @@ const Menu = ({ isLoggedIn }) => {
       {page.links.map(p => {
         return (
           <IonMenuToggle key={p.title} auto-hide="false">
-            <IonItem button routerLink={p.path} routerDirection="none" class="menu-item">
+            <IonItem button routerLink={p.path} routerDirection="none" className="menu-item">
               <IonIcon slot="start" icon={p.icon} />
               <IonLabel>{p.title}</IonLabel>
             </IonItem>
@@ -76,8 +76,8 @@ const Menu = ({ isLoggedIn }) => {
           <IonTitle>Menu</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent class="outer-content">
-        <div class="avatar">
+      <IonContent className="outer-content">
+        <div className="avatar">
             <img src={`https://eu.ui-avatars.com/api/?name=f&background=D46EFF&color=fff`} />
             <p>Florian</p>
         </div>

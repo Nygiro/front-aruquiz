@@ -52,7 +52,7 @@ const QuizzesListFilter = ({ onDismissModal, setFilterQuizzes, filterQuizzes }) 
           </IonButtons>
         </IonToolbar>
       </IonHeader>
-      <IonContent class="outer-content">
+      <IonContent className="outer-content">
         <IonList>
           <IonListHeader>Filtre par matière :</IonListHeader>
           <IonList>

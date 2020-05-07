@@ -158,7 +158,7 @@ const LiveQuiz = () => {
               </IonButtons>
             </IonToolbar>
           </IonHeader>
-          <IonContent class="outer-content">
+          <IonContent className="outer-content">
             <IonList>
               <IonListHeader>Activer vos options : </IonListHeader>
               <IonList>
