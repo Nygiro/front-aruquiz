@@ -6,7 +6,7 @@ const SelectReportType = ({setFilterReport}) => {
   return (
     <IonItem>
       <IonLabel>Rapport par :</IonLabel>
-      <IonSelect placeholder="Choisir" onIonChange={(e) => setFilterReport(e.target.value)} value="students">
+      <IonSelect placeholder="Choisir" onIonChange={(e) => setFilterReport(e.target.value)} value="students" cancelText="Annuler">
         <IonSelectOption value="students">
           Elèves
           </IonSelectOption>

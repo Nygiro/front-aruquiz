@@ -22,8 +22,8 @@ const QuizFinalResults = ({ allResultsByQuestion }) => {
   for (let [studentName, value] of Object.entries(answersByStudents)) {
     renderAnswersByStudents.push(
       <IonItem key={studentName}>
-        <IonLabel className="white">{studentName}</IonLabel>
-        <IonNote slot="end" className="white">{value}/{allResultsByQuestion.length}</IonNote>
+        <IonLabel>{studentName}</IonLabel>
+        <IonNote slot="end">{value}/{allResultsByQuestion.length}</IonNote>
       </IonItem>
     )
   }

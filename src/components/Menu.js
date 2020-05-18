@@ -12,9 +12,9 @@ import {
   IonToolbar,
   IonAvatar
 } from '@ionic/react';
-import { list, contacts, create, stats, informationCircle, logIn, logOut, map, person, personAdd, wifi } from 'ionicons/icons';
+import { list, contacts, create, stats, logIn, logOut, wifi, personAdd } from 'ionicons/icons';
 import React from 'react';
-import { useApolloClient, useQuery } from "@apollo/react-hooks";
+import { useApolloClient } from "@apollo/react-hooks";
 
 const routes = {
   connectedPages:
@@ -37,7 +37,7 @@ const routes = {
       links: [
         { title: 'Accueil', path: '/', icon: list },
         { title: 'Se connecter', path: '/signin', icon: logIn },
-        { title: 'About', path: '/about', icon: informationCircle }
+        { title: 'S\'inscrire', path: '/signup', icon: personAdd },
       ]
     }
   ]
@@ -77,7 +77,7 @@ const Menu = ({ isLoggedIn }) => {
         </IonToolbar>
       </IonHeader>
       <IonContent className="outer-content">
-        <div className="avatar">
+        <div className="avatar"  style={!isLoggedIn ? {display: 'none'} : {}}>
             <img src={`https://eu.ui-avatars.com/api/?name=f&background=D46EFF&color=fff`} />
             <p>Florian</p>
         </div>

@@ -6,7 +6,7 @@ const SelectStudents = ({ selectedClassId, setSelectedStudentsId }) => {
   return (
     <IonItem>
       <IonLabel>Vos élèves</IonLabel>
-      <IonSelect placeholder="Choisir" multiple={true} onIonChange={(e) => setSelectedStudentsId(e.target.value)} disabled={selectedClassId === null}>
+      <IonSelect cancelText="Annuler" placeholder="Choisir" multiple={true} onIonChange={(e) => setSelectedStudentsId(e.target.value)} disabled={selectedClassId === null}>
         {selectedClassId !== null && <OptionsStudents selectedClassId={selectedClassId} />}
       </IonSelect>
     </IonItem>

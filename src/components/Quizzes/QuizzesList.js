@@ -9,7 +9,7 @@ const QuizzesList = ({ quizzesList, hide }) => {
     return (
       <IonList>
         <IonListHeader>
-          No Sessions Found
+          Aucun quiz de disponible
         </IonListHeader>
       </IonList>
     );

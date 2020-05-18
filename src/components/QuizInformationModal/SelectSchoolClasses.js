@@ -11,7 +11,7 @@ const SelectSchoolClasses = ({ setSelectedClassId }) => {
   return (
     <IonItem>
       <IonLabel>Mes classes</IonLabel>
-      <IonSelect placeholder="Choisir" onIonChange={(e) => setSelectedClassId(e.target.value)}>
+      <IonSelect placeholder="Choisir" onIonChange={(e) => setSelectedClassId(e.target.value)} cancelText="Annuler">
         {dataForSchoolClasses.schoolClassesByCurrentUser.map(({ id, name }) => (
           <IonSelectOption key={id} value={id}>
             {name}

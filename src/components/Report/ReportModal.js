@@ -25,11 +25,13 @@ const ReportModal = ({ showModal, setShowModal, studentId, studentName }) => {
     })
   }
 
+  console.log(quiz)
+
   const renderQuiz = quiz.map(quiz => {
     return (
       <IonItem key={quiz.id}>
-        <IonLabel className="white">{quiz.name}</IonLabel>
-        <IonNote slot="end" className="white">1/4</IonNote>
+        <IonLabel>{quiz.name}</IonLabel>
+        <IonNote slot="end">1/4</IonNote>
       </IonItem>
     )
   })
