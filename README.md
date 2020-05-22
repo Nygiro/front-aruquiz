@@ -11,7 +11,7 @@ Concernant les formes, donc chaque forme est différentes, il y en a plus de 100
 
 ## Utilisation
 Pour utiliser l'application il faut par étape : 
-- Se rendre sur le site [aruquiz]: https://front-aruquiz.herokuapp.com/ 
+- Se rendre sur le site [aruquiz](https://front-aruquiz.herokuapp.com/) 
 - Télécharger le pack de forme aruco disponible dans le menu
 - Se connecter ou créer un compte à partir du menu 
 - Créer une classe avec au moins un élève dans l'onglet `Ma classe`
