@@ -6,7 +6,7 @@ import { IonRouterOutlet, IonSplitPane } from '@ionic/react';
 import MainTabs from './MainTabs';
 import { IonReactRouter } from '@ionic/react-router';
 
-import { GET_IS_LOGGED_IN, GET_IS_DARK_MODE } from './../utils/Store';
+import { GET_IS_LOGGED_IN, GET_IS_DARK_MODE, GET_USERNAME } from './../utils/Store';
 
 import Signup from './Signup';
 import Signin from './Signin';
@@ -16,10 +16,12 @@ import Homescreen from '../components/Homescreen';
 
 const Home = () => {
   const { data: dataForIsLoggedIn } = useQuery(GET_IS_LOGGED_IN);
+  const { data: dataForUsername } = useQuery(GET_USERNAME);
+
   const menuTemplate = (dataForIsLoggedIn.isLoggedIn) ? (
     <>
       <IonSplitPane contentId="main">
-        <Menu isLoggedIn={true} />
+        <Menu isLoggedIn={true} userName={dataForUsername.userName}/>
         <IonRouterOutlet id="main">
           <Route path="/" component={MainTabs}/>
         </IonRouterOutlet>

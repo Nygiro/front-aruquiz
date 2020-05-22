@@ -45,7 +45,7 @@ const routes = {
 };
 
 
-const Menu = ({ isLoggedIn }) => {
+const Menu = ({ isLoggedIn, userName }) => {
   const client = useApolloClient();
   const routeMenu = (isLoggedIn) ? routes.connectedPages : routes.disconnectedPages;
 
@@ -78,13 +78,15 @@ const Menu = ({ isLoggedIn }) => {
         </IonToolbar>
       </IonHeader>
       <IonContent className="outer-content">
-        <div className="avatar" style={!isLoggedIn ? { display: 'none' } : {}}>
-          <img src={`https://eu.ui-avatars.com/api/?name=f&background=D46EFF&color=fff`} />
-          <p>Florian</p>
-        </div>
+        {isLoggedIn &&
+          <div className="avatar">
+            <img src={`https://eu.ui-avatars.com/api/?name=${userName[0]}&background=D46EFF&color=fff`} />
+            <p>{userName}</p>
+          </div>
+        }
         {renderMenuListItems}
         <IonItem button className="menu-item">
-          <IonIcon slot="start" icon={download}/>
+          <IonIcon slot="start" icon={download} />
           <IonLabel><Link className={'link'} to="/markers_aruquiz.zip" target="_blank" download>Téléchager les formes</Link> </IonLabel>
         </IonItem>
       </IonContent>
