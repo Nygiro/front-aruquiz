@@ -90,8 +90,8 @@ mutation deleteQuiz($quizId: ID!) {
 
 
 export const CREATE_REPORT = gql`
-mutation createReport($schoolClassId: ID!, $studentId: ID!, $quizId: ID!, $questionId: ID!, $answerId: ID!) {
-  createReport(schoolClassId: $schoolClassId, studentId: $studentId, quizId: $quizId, questionId: $questionId, answerId: $answerId) {
+mutation createReport($schoolClassId: ID!, $studentId: ID!, $quizId: ID!, $questionId: ID!, $answerId: ID!, $sessionId: String!) {
+  createReport(schoolClassId: $schoolClassId, studentId: $studentId, quizId: $quizId, questionId: $questionId, answerId: $answerId, sessionId: $sessionId) {
     id,
   }
 }`;

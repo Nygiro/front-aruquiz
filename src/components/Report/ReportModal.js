@@ -18,9 +18,23 @@ const ReportModal = ({ showModal, setShowModal, studentId, studentName }) => {
   let quiz = [];
   if (dataForStudents && dataForStudents.reports !== undefined) {
     dataForStudents.reports.forEach(report => {
+      console.log(report.createdAt);
       const index = quiz.findIndex((e) => e.id === report.quiz.id);
       if (index === -1) {
-        quiz.push(report.quiz);
+        quiz.push({
+          ...report.quiz,
+          questions: [report.question],
+          answers: [report.answer]
+        });
+      } else {
+        const questionIndex = quiz[index].questions.findIndex(e => e.id === report.question.id);
+        if (questionIndex === -1) {
+          quiz[index].questions =  [... quiz[index].questions, report.question]
+        }
+        const answerIndex = quiz[index].answers.findIndex(e => e.id === report.answer.id);
+        if (answerIndex === -1) {
+          quiz[index].answers =  [... quiz[index].answers, report.answer]
+        }
       }
     })
   }
@@ -28,10 +42,11 @@ const ReportModal = ({ showModal, setShowModal, studentId, studentName }) => {
   console.log(quiz)
 
   const renderQuiz = quiz.map(quiz => {
+    const nbRightAnswer = quiz.answers.filter(answer => answer.isRight === true);
     return (
       <IonItem key={quiz.id}>
         <IonLabel>{quiz.name}</IonLabel>
-        <IonNote slot="end">1/4</IonNote>
+        <IonNote slot="end">{nbRightAnswer.length}/{quiz.questions.length}</IonNote>
       </IonItem>
     )
   })

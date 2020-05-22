@@ -66,6 +66,7 @@ query reports($studentId: ID!) {
       label
       isRight
     }
+    createdAt
   }
 }
 `

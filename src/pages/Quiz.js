@@ -21,6 +21,8 @@ const Quiz = () => {
   const [answersByQuestion, setAnswersByQuestion] = useState([]);
   const [showResultsByQuestion, setShowResultsByQuestion] = useState(false);
   const [showFinalResults, setShowFinalResults] = useState(false);
+  const [sessionId, setSessionId] = useState((Date.now() + Math.floor(Math.random() * 100)).toString())
+  console.log(sessionId);
 
   const [allResultsByQuestion, setAllResultsByQuestion] = useState([]);
   const usersRef = databaseRef.child(`users/${localStorage.getItem(ARUQUIZ_USER_TOKEN).replace(/[^a-zA-Z ]/g, "")}`)
@@ -126,6 +128,7 @@ const Quiz = () => {
                 setShowResultsByQuestion={setShowResultsByQuestion}
                 showResultsByQuestion={showResultsByQuestion}
                 setNbCurrentQuestion={setNbCurrentQuestion}
+                sessionId={sessionId}
               />
           }
         </IonContent>

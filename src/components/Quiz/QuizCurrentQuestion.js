@@ -3,7 +3,7 @@ import QuizDetails from "./QuizDetails";
 import QuizResults from "./QuizResults";
 import { ARUQUIZ_CURRENT_SCHOOL_CLASS_FOR_QUIZ } from "../../utils/Constants";
 
-const QuizCurrentQuestion = ({ quiz, nbCurrentQuestion, setAnswersByQuestion, answersByQuestion, setMediaStream, setStudents, students, showResultsByQuestion, openCamera, setOpenCamera, setShowResultsByQuestion, setNbCurrentQuestion }) => {
+const QuizCurrentQuestion = ({ quiz, nbCurrentQuestion, setAnswersByQuestion, sessionId, answersByQuestion, setMediaStream, setStudents, students, showResultsByQuestion, openCamera, setOpenCamera, setShowResultsByQuestion, setNbCurrentQuestion }) => {
   return (
     <>
       {
@@ -21,8 +21,7 @@ const QuizCurrentQuestion = ({ quiz, nbCurrentQuestion, setAnswersByQuestion, an
             displayAnswer={answersByQuestion.length === students.length}
             setNbCurrentQuestion={setNbCurrentQuestion}
             setShowResultsByQuestion={setShowResultsByQuestion}
-
-
+            sessionId={sessionId}
           />
           : (nbCurrentQuestion !== quiz.questions.length) ? (
             <QuizResults

@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/react-hooks';
 import { CREATE_REPORT } from '../../utils/MutationApi';
 
 const ANSWERS = ['A', 'B', 'C', 'D'];
-const CameraDetector = ({ quiz, setMediaStream, students, schoolClassId, setAnswersByQuestion, showResultsByQuestion, answersByQuestion }) => {
+const CameraDetector = ({ quiz, setMediaStream, sessionId, students, schoolClassId, setAnswersByQuestion, showResultsByQuestion, answersByQuestion }) => {
     const [createReport] = useMutation(CREATE_REPORT);
     const video = useRef('');
     const canvas = useRef('');
@@ -119,7 +119,8 @@ const CameraDetector = ({ quiz, setMediaStream, students, schoolClassId, setAnsw
                             studentId: student.id,
                             quizId: quiz.id,
                             questionId: quiz.questions[localStorage.getItem('nbCurrentQuestion')].id,
-                            answerId: answer.id
+                            answerId: answer.id,
+                            sessionId: sessionId
                         }
                     })
                     setAnswersByQuestion([...answersByQuestion, {

@@ -3,7 +3,7 @@ import QuizQuestionNumber from './QuizQuestionNumber';
 import QuizQuestion from './QuizQuestion';
 import CameraDetector from './CameraDetector';
 import { ARUQUIZ_CURRENT_SCHOOL_CLASS_FOR_QUIZ } from '../../utils/Constants';
-const QuizDetails = ({ quiz, nbCurrentQuestion, setAnswersByQuestion, displayAnswer, answersByQuestion, setMediaStream, setStudents, students, showResultsByQuestion, openCamera, setOpenCamera, setShowResultsByQuestion, setNbCurrentQuestion }) => {
+const QuizDetails = ({ quiz, nbCurrentQuestion, sessionId, setAnswersByQuestion, displayAnswer, answersByQuestion, setMediaStream, setStudents, students, showResultsByQuestion, openCamera, setOpenCamera, setShowResultsByQuestion, setNbCurrentQuestion }) => {
   return (
     <>
       <QuizQuestionNumber
@@ -27,6 +27,7 @@ const QuizDetails = ({ quiz, nbCurrentQuestion, setAnswersByQuestion, displayAns
           answersByQuestion={answersByQuestion}
           showResultsByQuestion={showResultsByQuestion}
           answersByQuestion={answersByQuestion}
+          sessionId={sessionId}
         /> : (
             <div className="CameraDetector" onClick={() => setOpenCamera(!openCamera)}>
               Commencer le scan
