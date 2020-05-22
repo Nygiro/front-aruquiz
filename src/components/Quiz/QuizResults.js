@@ -4,7 +4,7 @@ import { IonItem, IonLabel, IonList, IonListHeader, IonNote } from '@ionic/react
 const QuizResults = ({ quiz, nbCurrentQuestion, answersByQuestion, students, setNbCurrentQuestion, showResultsByQuestion }) => {
   const renderAnswerByQuestion = answersByQuestion.map(({ markerId, studentName, isRight, answerLabel }) => {
     return (
-      <IonItem key={markerId} color={isRight ? 'success' : 'danger'}>
+      <IonItem key={markerId} color={isRight ? 'success' : 'danger'} style={{paddingTop: 0}}>
         <IonLabel className="white">{studentName}</IonLabel>
         <IonNote slot="end" className="white">{answerLabel}</IonNote>
       </IonItem>

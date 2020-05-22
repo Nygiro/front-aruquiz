@@ -5,7 +5,6 @@ import ReportModal from './ReportModal';
 const StudentsList = ({ studentList }) => {
   const [showModal, setShowModal] = useState({studentId: '', display: false});
 
-  console.log(showModal)
   const renderStudents = studentList.map(({ id, name }, i) => {
     let color = (i % 2 === 0) ? 'D46EFF' : '8580E8';
     return (

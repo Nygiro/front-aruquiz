@@ -12,9 +12,10 @@ import {
   IonToolbar,
   IonAvatar
 } from '@ionic/react';
-import { list, contacts, create, stats, logIn, logOut, wifi, personAdd } from 'ionicons/icons';
+import { list, contacts, create, stats, logIn, logOut, wifi, personAdd, download } from 'ionicons/icons';
 import React from 'react';
 import { useApolloClient } from "@apollo/react-hooks";
+import { Link } from 'react-router-dom';
 
 const routes = {
   connectedPages:
@@ -77,11 +78,15 @@ const Menu = ({ isLoggedIn }) => {
         </IonToolbar>
       </IonHeader>
       <IonContent className="outer-content">
-        <div className="avatar"  style={!isLoggedIn ? {display: 'none'} : {}}>
-            <img src={`https://eu.ui-avatars.com/api/?name=f&background=D46EFF&color=fff`} />
-            <p>Florian</p>
+        <div className="avatar" style={!isLoggedIn ? { display: 'none' } : {}}>
+          <img src={`https://eu.ui-avatars.com/api/?name=f&background=D46EFF&color=fff`} />
+          <p>Florian</p>
         </div>
         {renderMenuListItems}
+        <IonItem button className="menu-item">
+          <IonIcon slot="start" icon={download}/>
+          <IonLabel><Link className={'link'} to="/markers_aruquiz.zip" target="_blank" download>Téléchager les formes</Link> </IonLabel>
+        </IonItem>
       </IonContent>
     </IonMenu>
   );

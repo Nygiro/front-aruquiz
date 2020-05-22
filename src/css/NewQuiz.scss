@@ -57,6 +57,7 @@
   &::after {
     content: 'A';
     @extend .answer-label;
+    color: white;
   }
 }
 
@@ -64,6 +65,7 @@
   &::after {
     content: 'B';
     @extend .answer-label;
+    color: white;
   }
 }
 
@@ -71,6 +73,7 @@
   &::after {
     content: 'C';
     @extend .answer-label;
+    color: white;
   }
 }
 
@@ -78,6 +81,7 @@
   &::after {
     content: 'D';
     @extend .answer-label;
+    color: white;
   }
 }
 

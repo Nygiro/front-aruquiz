@@ -29,7 +29,7 @@ const QuizDetails = ({ quiz, nbCurrentQuestion, sessionId, setAnswersByQuestion,
           answersByQuestion={answersByQuestion}
           sessionId={sessionId}
         /> : (
-            <div className="CameraDetector" onClick={() => setOpenCamera(!openCamera)}>
+            <div className="CameraDetector white" onClick={() => setOpenCamera(!openCamera)}>
               Commencer le scan
             </div>
           )

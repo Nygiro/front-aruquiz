@@ -5,7 +5,7 @@ const QuizQuestionNumber = ({ quiz, nbCurrentQuestion, answersByQuestion, studen
       {answersByQuestion.length === students.length ? (
         <>
           {!showResultsByQuestion ? (
-            <p className={'result-question'} onClick={() => setShowResultsByQuestion(!showResultsByQuestion)}>
+            <p className={'result-question white'} onClick={() => setShowResultsByQuestion(!showResultsByQuestion)}>
               Résultats
             </p>
           ) : (
@@ -13,7 +13,7 @@ const QuizQuestionNumber = ({ quiz, nbCurrentQuestion, answersByQuestion, studen
             )
           }
           <p>Question {nbCurrentQuestion + 1}/{quiz.questions.length}</p>
-          <p className={'next-question'} onClick={() => setNbCurrentQuestion(nbCurrentQuestion + 1)}>
+          <p className={'next-question white'} onClick={() => setNbCurrentQuestion(nbCurrentQuestion + 1)}>
             {
               nbCurrentQuestion + 1 !== quiz.questions.length
                 ? 'Suivante'

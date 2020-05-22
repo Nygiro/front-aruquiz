@@ -1,10 +1,11 @@
-import React from 'react';
-import { IonModal, IonAvatar, IonBackButton, IonNote, IonList, IonItem, IonLabel, IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonButton } from '@ionic/react';
+import React, { useState, Fragment } from 'react';
+import { IonModal, IonItemGroup, IonItemDivider, IonBackButton, IonNote, IonList, IonItem, IonLabel, IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonButton } from '@ionic/react';
 import { GET_REPORT_BY_STUDENT } from '../../utils/QueryApi';
 import { useQuery } from '@apollo/react-hooks';
 import Loading from '../Utils/Loading';
 
 const ReportModal = ({ showModal, setShowModal, studentId, studentName }) => {
+  const [sessionToDisplay, setSessionToDisplay] = useState(null);
   const { data: dataForStudents, loading: loadingForStudents } = useQuery(GET_REPORT_BY_STUDENT, {
     variables: { studentId: studentId }
   })
@@ -18,36 +19,51 @@ const ReportModal = ({ showModal, setShowModal, studentId, studentName }) => {
   let quiz = [];
   if (dataForStudents && dataForStudents.reports !== undefined) {
     dataForStudents.reports.forEach(report => {
-      console.log(report.createdAt);
-      const index = quiz.findIndex((e) => e.id === report.quiz.id);
+      const index = quiz.findIndex((e) => e.sessionId === report.sessionId);
       if (index === -1) {
         quiz.push({
           ...report.quiz,
           questions: [report.question],
-          answers: [report.answer]
+          answers: [report.answer],
+          sessionId: report.sessionId
         });
       } else {
         const questionIndex = quiz[index].questions.findIndex(e => e.id === report.question.id);
         if (questionIndex === -1) {
-          quiz[index].questions =  [... quiz[index].questions, report.question]
+          quiz[index].questions = [...quiz[index].questions, report.question]
         }
         const answerIndex = quiz[index].answers.findIndex(e => e.id === report.answer.id);
         if (answerIndex === -1) {
-          quiz[index].answers =  [... quiz[index].answers, report.answer]
+          quiz[index].answers = [...quiz[index].answers, report.answer]
         }
       }
     })
   }
 
-  console.log(quiz)
-
-  const renderQuiz = quiz.map(quiz => {
+  const renderQuiz = quiz.map((quiz, index) => {
     const nbRightAnswer = quiz.answers.filter(answer => answer.isRight === true);
     return (
-      <IonItem key={quiz.id}>
-        <IonLabel>{quiz.name}</IonLabel>
-        <IonNote slot="end">{nbRightAnswer.length}/{quiz.questions.length}</IonNote>
-      </IonItem>
+      <div key={index}>
+        <IonItemGroup>
+          <IonItemDivider onClick={() => setSessionToDisplay(quiz.sessionId)}>
+            <IonLabel>{quiz.name}</IonLabel>
+            <IonNote slot="end" style={{ padding: 15 }}>{nbRightAnswer.length}/{quiz.questions.length}</IonNote>
+          </IonItemDivider>
+          <div className={quiz.sessionId === sessionToDisplay ? 'animate-report-state' : 'default-report-state'}>
+            {quiz.questions.map((question, i) => {
+              return (
+                <IonItem 
+                key={question.id} 
+                color={quiz.answers[i].isRight ? 'success' : 'danger'}
+                style={{paddingTop: 0, marginLeft: 5}}>
+                  <IonLabel className="white">{question.label}</IonLabel>
+                  <IonNote slot="end" className="white">{quiz.answers[i].label}</IonNote>
+                </IonItem>
+              )
+            })}
+          </div>
+        </IonItemGroup>
+      </div>
     )
   })
   return (
