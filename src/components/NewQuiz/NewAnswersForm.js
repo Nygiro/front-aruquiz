@@ -75,7 +75,7 @@ const NewAnswersForm = ({ quiz, question, setQuestion, setLastAnswerIndexUpdate,
         </div>
       </div>
       {question.answers.find(answer => answer.label === '') === undefined &&
-        <div style={{ textAlign: 'center', display: 'flex', flexWrap: 'wrap' }}>
+        <div style={{ textAlign: 'center', display: 'flex', flexWrap: 'wrap' }} className={'margin-btn-quiz'}>
           <IonButton className="btn-for-new-quiz" onClick={() => setSelectRightAnswer(true)}>
             Sélectionner votre réponse
           </IonButton>
